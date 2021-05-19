@@ -5,7 +5,7 @@ public class Integers extends Objects{
     private boolean sorted = false;
 
     //Constructors
-    Integers(int[] array){
+    public Integers(int[] array){
         this.array = array;
     }
     Integers(int[] array, boolean sorted){

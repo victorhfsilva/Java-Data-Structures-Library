@@ -1,14 +1,20 @@
 package array;
 
-public class Objects {
-    private Objects[] objects;
+public class Objects implements Cloneable {
+	
+	private Objects[] objects;
+	
+	@Override
+	public Object clone() throws CloneNotSupportedException
+    {
+        return super.clone();
+    }
 
     //Constructors
     public Objects(Objects[] array){
         this.objects = array;
     }
     Objects(){
-        System.out.println("Null Object");
     }
 
     //Getters
@@ -93,5 +99,13 @@ public class Objects {
             objects[i]=oldArray[i+1];
         }
         return objects;
+    }
+    
+  //Print Array
+    public void printObject(){
+        for (int i = 0; i<objects.length;i++){
+            System.out.print(objects[i]+"\t");
+        }
+        System.out.println();
     }
 }

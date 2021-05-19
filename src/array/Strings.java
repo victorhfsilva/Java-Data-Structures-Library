@@ -1,6 +1,6 @@
 package array;
 
-public class Strings {
+public class Strings extends Objects {
     private String[] array;
 
     //Constructors
@@ -88,6 +88,14 @@ public class Strings {
             array[i]=oldArray[i+1];
         }
         return array;
+    }
+    
+    //Print Array
+    public void printArray(){
+        for (int i = 0; i<array.length;i++){
+            System.out.print(array[i]+"\t");
+        }
+        System.out.println();
     }
 
 }

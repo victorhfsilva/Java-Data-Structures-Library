@@ -7,7 +7,7 @@ public class Main {
         Integers array3 = new Integers(new int[]{3,2,4,5,6,1});
         Objects objects = new Objects(new Objects[]{array1,array2, array3});       
        
-        //ARRAY OF elements
+        //ARRAY OF ELEMENTS
         
         //Print Array
         System.out.println("Print Array");
@@ -48,6 +48,20 @@ public class Main {
         array1.printArray();
         System.out.println();
         
+        //2D Array of Doubles
+        //CORRIGIR LINHA X COLUNA
+        System.out.println("Searching 2D Array");
+        double[][] array5_double = {{1.0,2.1,3.0},{1.1,4.2,2.4},{1.5,4.1,5.2,2.1}};
+        DoubleMatrix array5 = new DoubleMatrix(array5_double);
+        array5.indexOfElement(4.2);
+        array5.indexOfElement(5.2,2);
+        array5.insertElement(3.4, 1, 3);
+        array5.printArray();
+        array5.insertionSort(1);
+        System.out.println();
+        array5.printArray();
+        System.out.println();
+        
         //ARRAY OF OBJECTS
         
         //Print Objects
@@ -76,7 +90,6 @@ public class Main {
         System.out.println("Delete Object");
         objects.deleteObject(1);
         objects.printObject();        
-        
     }
 
 }

@@ -81,14 +81,9 @@ public class Integers extends Objects{
             return array;
         }
         int[] oldArray = array;
-        if (index == array.length) {
-            array = new int[oldArray.length+1];
-            array[oldArray.length]=element;
-        }
-        else {
-            int temp = array[index];
-            array = new int[oldArray.length + 1];
-        }
+        array = new int[oldArray.length+1];
+        
+        //Insert the element
         for (int i = 0; i<index; i++){
             array[i]=oldArray[i];
         }

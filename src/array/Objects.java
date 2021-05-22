@@ -63,15 +63,10 @@ public class Objects implements Cloneable {
             System.out.println("Array Index is Out of Bounds");
             return objects;
         }
+        
         Objects[] oldArray = objects;
-        if (index == objects.length) {
-            objects = new Objects[oldArray.length+1];
-            objects[oldArray.length]=object;
-        }
-        else {
-            Objects temp = objects[index];
-            objects = new Objects[oldArray.length + 1];
-        }
+        objects = new Objects[oldArray.length + 1];
+        
         for (int i = 0; i<index; i++){
             objects[i]=oldArray[i];
         }

@@ -53,14 +53,9 @@ public class Strings extends Objects {
             return array;
         }
         String[] oldArray = array;
-        if (index == array.length) {
-            array = new String[oldArray.length+1];
-            array[oldArray.length]=element;
-        }
-        else {
-            String temp = array[index];
-            array = new String[oldArray.length + 1];
-        }
+        array = new String[oldArray.length + 1];
+        
+        //Insert the element
         for (int i = 0; i<index; i++){
             array[i]=oldArray[i];
         }

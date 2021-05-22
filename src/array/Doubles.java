@@ -81,14 +81,9 @@ public class Doubles extends Objects{
             return array;
         }
         double[] oldArray = array;
-        if (index == array.length) {
-            array = new double[oldArray.length+1];
-            array[oldArray.length]=element;
-        }
-        else {
-            double temp = array[index];
-            array = new double[oldArray.length + 1];
-        }
+        array = new double[oldArray.length + 1];
+        
+        //Insert the element
         for (int i = 0; i<index; i++){
             array[i]=oldArray[i];
         }
@@ -107,8 +102,10 @@ public class Doubles extends Objects{
             System.out.println("Array Index is Out of Bounds");
             return array;
         }
+        
         double[] oldArray = array;
         array = new double[oldArray.length-1];
+        
         for (int i=0; i<index;i++){
             array[i]=oldArray[i];
         }

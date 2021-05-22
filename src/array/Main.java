@@ -28,8 +28,8 @@ public class Main {
 
         //Insert Element in the last index
         System.out.println("Insert Element");
-        array1.insertElement(4,3);
-        array1.printArray();
+        array3.insertElement(40,6);
+        array3.printArray();
         array2.insertElement("lemon", 3);
         array2.printArray();
         System.out.println();
@@ -51,15 +51,25 @@ public class Main {
         //2D Array of Doubles
         //CORRIGIR LINHA X COLUNA
         System.out.println("Searching 2D Array");
-        double[][] array5_double = {{1.0,2.1,3.0},{1.1,4.2,2.4},{1.5,4.1,5.2,2.1}};
+        double[][] array5_double = {{1.0,2.1,3.0,2.1},{1.1,4.2,2.4},{1.5,4.1,5.2,3.4}};
         DoubleMatrix array5 = new DoubleMatrix(array5_double);
+        
         array5.indexOfElement(4.2);
         array5.indexOfElement(5.2,2);
-        array5.insertElement(3.4, 1, 3);
-        array5.printArray();
+        
+        //array5.insertElement(3.4, 1, 3);
+        array5.printMatrix();
+        System.out.println();
+        array5.insertRow(new double[] {2.3, 4.2,3.2},3);
+        array5.printMatrix();
+        System.out.println();
+        array5.insertLine(new double[] {1.2,1.5,6.1,6.2,4.1}, 2);
+        array5.printMatrix();
+        System.out.println();
+        
         array5.insertionSort(1);
         System.out.println();
-        array5.printArray();
+        array5.printMatrix();
         System.out.println();
         
         //ARRAY OF OBJECTS
@@ -81,7 +91,7 @@ public class Main {
        
         //Insert Object and get its reference
         System.out.println("Insert Cloned Object");
-        objects.insertObject(array4,2);
+        objects.insertObject(array4,3);
         objects.getObjectAt(2);
         objects.printObject();
         System.out.println();

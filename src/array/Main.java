@@ -49,21 +49,49 @@ public class Main {
         System.out.println();
         
         //2D Array of Doubles
-        //CORRIGIR LINHA X COLUNA
+        
         System.out.println("Searching 2D Array");
-        double[][] array5_double = {{1.0,2.1,3.0,2.1},{1.1,4.2,2.4},{1.5,4.1,5.2,3.4}};
+        
+        //Print the inputed matrix
+        System.out.println("Print the Inputed Matrix");
+        double[][] array5_double = {{1.0,2.1,3.0,2.1,4.2},{1.1,4.2,2.4},{5.2,4.2,5.2,3.4}};
         DoubleMatrix array5 = new DoubleMatrix(array5_double);
-        
-        array5.indexOfElement(4.2);
-        array5.indexOfElement(5.2,2);
-        
-        //array5.insertElement(3.4, 1, 3);
         array5.printMatrix();
         System.out.println();
+        
+        //Get the index of some elements of the matrix
+        System.out.println("Get the index of some elements");
+        int[][] rowLineInt = array5.indexOfElement(4.2);
+        double[][] rowLine = new double[rowLineInt.length][2];
+        for (int i = 0; i < rowLineInt.length; i++) {
+        	for (int j = 0; j < rowLineInt[i].length; j++) {
+				rowLine[i][j] = (double) rowLineInt[i][j];
+			}
+		}
+        DoubleMatrix RowLine = new DoubleMatrix((double[][]) rowLine);
+        RowLine.printMatrix();
+        System.out.println();
+        
+        //Get the index of elements on specific line
+        int[] row = array5.indexOfElement(5.2,2);
+        Integers Row = new Integers(row);
+        Row.printArray();
+        System.out.println();
+        
+        //Get the index of elements on sorted line
+        array5.bubbleSort(2);
+        array5.printMatrix();
+        row = array5.indexOfElement(5.2, 2);
+        Row.setArray(row);
+        Row.printArray();
+        System.out.println();
+        
+        //Inserting rows to the matrix
         array5.insertRow(new double[] {2.3, 4.2,3.2},3);
         array5.printMatrix();
         System.out.println();
-        array5.insertLine(new double[] {1.2,1.5,6.1,6.2,4.1}, 2);
+        
+        array5.insertLine(new double[] {1.2, 1.5, 6.1, 6.2, 4.1, 3.2}, 3);
         array5.printMatrix();
         System.out.println();
         

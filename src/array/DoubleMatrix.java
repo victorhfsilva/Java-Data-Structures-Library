@@ -15,13 +15,14 @@ public class DoubleMatrix extends Objects{
 	
     //Constructors
     public DoubleMatrix(double[][] array){
-			
-    	int temp;
-		int[] length = new int[array.length];
 		
-		for (int i = 0; i < array.length; i++) {
-			length[i]=array[i].length;
+    	//create an array with the number o rows in each line
+    	int temp;
+    	int[] length = new int[array.length];
+		for (int line = 0; line < array.length; line++) {
+			length[line]=array[line].length;
 		}
+		//sort this array
 		for (int i = 1; i < array.length; i++) {
 	            for (int j=i; j>0; j--){
 	                if (length[i]<length[j-1]){
@@ -31,25 +32,31 @@ public class DoubleMatrix extends Objects{
 	                }
 	            }
 		}		
-		//Print Array Length
-        for (int i = 0; i<length.length; i++){
-            System.out.print(length[i]+"\t");
-        }
-        System.out.println();
+//		//Print the length array after sorting
+//        for (int line = 0; line<length.length; line++){
+//            System.out.print(length[line]+"\t");
+//        }
+//        System.out.println();
 	       
-    	
+    	//check if each line of the array has the same number of rows
 		try {
-			for (int i = 1; i < array.length; i++) {
-				if (array[i].length != array[i-1].length) throw new Exception();
+			for (int line = 1; line < array.length; line++) {
+				if (array[line].length != array[line-1].length) throw new Exception();
 				this.array = array;
 			}
 		}
-		
+		//case not create a matrix with a number of rows equal to the inputed longer row
 		catch (Exception matrixNumbersOfRowsDifferent) {
 			System.out.println("The number of rows is different for each array.");
 			this.array = new double[array.length][length[length.length-1]];
+			//copy the inputed arrays to the new matrix
+			for (int line = 0; line < array.length; line++) {
+				for (int row = 0; row < array[line].length; row++) {
+					this.array[line][row]=array[line][row];
+				}
+			}
 		}
-    	
+    	//create a sorted array with false values with the same length as the array matrix 
         sorted = new boolean[array.length];
         for (int line = 0; line < array.length; line++) {
 			sorted[line] = false;
@@ -57,7 +64,49 @@ public class DoubleMatrix extends Objects{
     }
     
     public DoubleMatrix(double[][] array, boolean[] sorted){
-        this.array = array;
+    	
+    	//create an array with the number o rows in each line
+    	int temp;
+    	int[] length = new int[array.length];
+		for (int line = 0; line < array.length; line++) {
+			length[line]=array[line].length;
+		}
+		//sort this array
+		for (int i = 1; i < array.length; i++) {
+	            for (int j=i; j>0; j--){
+	                if (length[i]<length[j-1]){
+                    	temp =  length[j-1];
+                        length[j-1] = length[j];
+                        length[j] = temp;
+	                }
+	            }
+		}		
+//		//Print the length array after sorting
+//        for (int line = 0; line<length.length; line++){
+//            System.out.print(length[line]+"\t");
+//        }
+//        System.out.println();
+	       
+    	//check if each line of the array has the same number of rows
+		try {
+			for (int line = 1; line < array.length; line++) {
+				if (array[line].length != array[line-1].length) throw new Exception();
+			}
+			this.array = array;
+		}
+		//case not create a matrix with a number of rows equal to the inputed longer row
+		catch (Exception matrixNumbersOfRowsDifferent) {
+			System.out.println("The number of rows is different for each array.");
+			this.array = new double[array.length][length[length.length-1]];
+			//copy the inputed arrays to the new matrix
+			for (int line = 0; line < array.length; line++) {
+				for (int row = 0; row < array[line].length; row++) {
+					this.array[line][row]=array[line][row];
+				}
+			}
+		}
+        
+        //Check if sorted has the same length as array
         try { if (sorted.length == array.length) throw new Exception(); }
         catch (Exception sortedNumberOfRowsDifferent) {
         	System.out.println("The number of rows is different for each array.");
@@ -120,113 +169,235 @@ public class DoubleMatrix extends Objects{
     }
     
     //Searching for an element in the entire matrix
-    public int indexOfElement(double element){
+    public int[][] indexOfElement(double element){
+    	int[][] rowLine = new int[][] {};
     	//Linear Search
         //Big-O O(n*m)
         for (int line = 0; line<array.length; line++) {
     		for (int row = 0; row<array[line].length; row++){
                 if (element == array[line][row]) {
                 	System.out.println("The element is in the line "+line+" and row "+row);
-                    return row;
+                	
+                	//Save the old values and initialize the new matrix
+            		int[][] oldRowLine = rowLine;
+            		
+            		rowLine = new int[rowLine.length+1][2];
+            		
+            		//Insert the line of elements
+            	    for (int  i = 0; i < oldRowLine.length; i++) {
+                		for (int j = 0; j<2; j++){
+            	            rowLine[i][j]=oldRowLine[i][j];
+            	        }
+            	    }
+            	    rowLine[oldRowLine.length][0]=line; rowLine[oldRowLine.length][1]=row;
                 }
             }
         }
-        System.out.println("The element is not in the Array.");
-        return -1;
+        if (rowLine.length == 0) System.out.println("The element is not on the array.");
+        return rowLine;
     }
     
     //Searching for an element in a specific row of the matrix
-    public int indexOfElement(double element,int line) {
-		//Check if the line is out of bounds
+    public int[] indexOfElement(double element,int line) {
+		
+    	int[] row = new int[]{};
+    	
+    	//Check if the line is out of bounds
     	try {if (line > array.length || line<0) throw new ArrayIndexOutOfBoundsException();}
 		catch (ArrayIndexOutOfBoundsException OutOfBoundsException) {
-			System.out.println("Array Index is Out of Bounds");
-	        return -1;
-		}	
+			System.out.println("Array Index is Out of Bounds");			
+	        return row;
+		} 
+    	    	
 	    //Binary Search
 	    //Big-O: O(log2(n))
 	    if (sorted[line]){
 		   int row_end = array[line].length-1;
 	       int row_beginning = 0;
 	       while(row_beginning<=row_end){
-	           int row_middle = (row_beginning+row_end)/2;
+	           
+	    	   int row_middle = (row_beginning+row_end)/2;
+	           
 	           if (element>array[line][row_middle]) row_beginning = row_middle+1;
+	           
 	           else if (element<array[line][row_middle]) row_end = row_middle-1;
+	           
 	           else if (element==array[line][row_middle]) {
-	               System.out.println("The element is in the row"+row_middle);
-	               return row_middle;
+	               System.out.println("The element is in the row "+row_middle);
+	               
+	            //Save the old values and initialize the new matrix
+	            row = new int[row.length+1];       	
+	       	    
+	       	    //Save the row value
+	       	    row[0]=row_middle;
+	       	    
+	       	    int[] oldRow = row;	       	    
+	       	    int row_middle_left = row_middle-1;
+	       	    int row_middle_right = row_middle+1;
+	       	    
+	       	    //check if the left element has similar value
+	       	    while(element == array[line][row_middle_left]) {
+	       	    	//Initialize the new matrix		       			       
+		       		row = new int[row.length+1];		       		
+		       		//Insert the line of elements
+		       	    for (int  i = 0; i < oldRow.length; i++) {
+	       	            row[i]=oldRow[i];
+		       	    }
+		       	    System.out.println("The element is in the row "+row_middle_left);
+		       	    //Save the row value
+		       	    row[oldRow.length]=row_middle_left;
+		       	    //Save the old values and subtract the index
+		       	    row_middle_left--;
+	       	    	oldRow = row;	
+	       	    }
+	       	    
+	       	    //check if the left element has similar value
+	       	    while(element == array[line][row_middle_right]) {
+	       	    	//Save the old values and initialize the new matrix	       	    	
+		       		row = new int[row.length+1];		       		
+		       		//Insert the line of elements
+		       	    for (int  i = 0; i < oldRow.length; i++) {
+	       	            row[i]=oldRow[i];
+		       	    }
+		       	    System.out.println("The element is in the row "+row_middle_right);
+		       	    //Save the row value		       	    
+		       	    row[oldRow.length]=row_middle_right;		       	    
+		       	    //Save the old values and add the index
+		       	    oldRow = row;
+	       	    	row_middle_right++;
+	       	    }
+	       	    return row;
+	       	    
 	           }
 	       }
-	       System.out.println("The element is not in the Array.");
-	       return -1;
+	       if (row.length == 0) System.out.println("The element is not in the Array.");
+	       return row;
 	       }
 	       else{
 	           //Linear Search
 	           //Big-O O(n)
-	       		for (int row = 0; row<array[line].length; row++){
-		                if (element == array[line][row]) {
-		                    System.out.println("The element is in the row "+row);
-		                    return row;
+	       		for (int j = 0; j<array[line].length; j++){
+		                if (element == array[line][j]) {
+		                    System.out.println("The element is in the row "+j);
+		                    
+		                    //Save the old values and initialize the new matrix
+		    	       		int[] oldRow = row;
+		    	       		
+		    	       		row = new int[row.length+1];
+		    	       		
+		    	       		//Insert the line of elements
+		    	       	    for (int  i = 0; i < oldRow.length; i++) {
+		           	            row[i]=oldRow[i];
+		    	       	    }
+		    	       	    row[oldRow.length]=j;		                   
 		                }
 		            }
 		        }
-	           System.out.println("The element is not in the Array.");
-	       return -1;
+	    		if (row.length == 0)System.out.println("The element is not in the Array.");
+	    		return row;
    }
   
     //Searching for an element in a specific row of the matrix while setting if the row is sorted
-    public int indexOfElement(double element,int line, boolean sortedLine) {
+    public int[] indexOfElement(double element,int line, boolean sortedLine) {
+    	
+    	int[] row = new int[]{};
     	//Check if the line is out of bounds
     	try {if (line > array.length || line<0) throw new ArrayIndexOutOfBoundsException();}
     	catch (ArrayIndexOutOfBoundsException OutOfBoundsException) {
     		System.out.println("Array Index is Out of Bounds");
-            return -1;
+            return row;
     	}
     	this.sorted[line] = sortedLine;
     	//Binary Search
         //Big-O: O(log2(n))
         if (sorted[line]){
         	int row_end = array[line].length-1;
-            int row_beginning = 0;
-            while(row_beginning<=row_end){
-                int row_middle = (row_beginning+row_end)/2;
-                if (element>array[line][row_middle]) row_beginning = row_middle+1;
-                else if (element<array[line][row_middle]) row_end = row_middle-1;
-                else if (element==array[line][row_middle]) {
-                    System.out.println("The element is in the row"+row_middle);
-                    return row_middle;
-                }
-            }
-            System.out.println("The element is not in the Array.");
-            return -1;
+ 	       int row_beginning = 0;
+ 	       while(row_beginning<=row_end){
+ 	           
+ 	    	   int row_middle = (row_beginning+row_end)/2;
+ 	           
+ 	           if (element>array[line][row_middle]) row_beginning = row_middle+1;
+ 	           
+ 	           else if (element<array[line][row_middle]) row_end = row_middle-1;
+ 	           
+ 	           else if (element==array[line][row_middle]) {
+ 	               System.out.println("The element is in the row "+row_middle);
+ 	               
+ 	            //Save the old values and initialize the new matrix
+ 	            row = new int[row.length+1];       	
+ 	       	    
+ 	       	    //Save the row value
+ 	       	    row[0]=row_middle;
+ 	       	    
+ 	       	    int[] oldRow = row;	       	    
+ 	       	    int row_middle_left = row_middle-1;
+ 	       	    int row_middle_right = row_middle+1;
+ 	       	    
+ 	       	    //check if the left element has similar value
+ 	       	    while(element == array[line][row_middle_left]) {
+ 	       	    	//Initialize the new matrix		       			       
+ 		       		row = new int[row.length+1];		       		
+ 		       		//Insert the line of elements
+ 		       	    for (int  i = 0; i < oldRow.length; i++) {
+ 	       	            row[i]=oldRow[i];
+ 		       	    }
+ 		       	    System.out.println("The element is in the row "+row_middle_left);
+ 		       	    //Save the row value
+ 		       	    row[oldRow.length]=row_middle_left;
+ 		       	    //Save the old values and subtract the index
+ 		       	    row_middle_left--;
+ 	       	    	oldRow = row;	
+ 	       	    }
+ 	       	    
+ 	       	    //check if the left element has similar value
+ 	       	    while(element == array[line][row_middle_right]) {
+ 	       	    	//Save the old values and initialize the new matrix	       	    	
+ 		       		row = new int[row.length+1];		       		
+ 		       		//Insert the line of elements
+ 		       	    for (int  i = 0; i < oldRow.length; i++) {
+ 	       	            row[i]=oldRow[i];
+ 		       	    }
+ 		       	    System.out.println("The element is in the row "+row_middle_right);
+ 		       	    //Save the row value		       	    
+ 		       	    row[oldRow.length]=row_middle_right;		       	    
+ 		       	    //Save the old values and add the index
+ 		       	    oldRow = row;
+ 	       	    	row_middle_right++;
+ 	       	    }
+ 	       	    return row;
+ 	           }
+ 	       }
         }
         else{
-            //Linear Search
-            //Big-O O(n)
-        		for (int row = 0; row<array[line].length; row++){
-	                if (element == array[line][row]) {
-	                    System.out.println("The element is in the row "+row);
-	                    return row;
-	                }
-	            }
-	        }
-            System.out.println("The element is not in the Array.");
-        return -1;
+        	//Linear Search
+	           //Big-O O(n)
+	       		for (int j = 0; j<array[line].length; j++){
+		                if (element == array[line][j]) {
+		                    System.out.println("The element is in the row "+j);
+		                    
+		                    //Save the old values and initialize the new matrix
+		    	       		int[] oldRow = row;
+		    	       		
+		    	       		row = new int[row.length+1];
+		    	       		
+		    	       		//Insert the line of elements
+		    	       	    for (int  i = 0; i < oldRow.length; i++) {
+		           	            row[i]=oldRow[i];
+		    	       	    }
+		    	       	    row[oldRow.length]=j;		                   
+		                }
+		            }
+		        }
+	    		if (row.length == 0)System.out.println("The element is not in the Array.");
+	    		return row;
     }
     
     //Inserting a line
     public double[][] insertLine(double[] elements, int line){
-    	//check if the matrix arrays have the same number of rows
-    	for (int i = 1; i < array.length; i++) {
-			try {if (array[i].length != array[i-1].length) throw new Exception();}
-			catch (Exception matrixNumbersOfRowsDifferent) {
-				System.out.println("The number of rows is different for each array.");
-				return array;
-			}
-		}
     	
-    	//check if the inserted number of elements is equal to the matrix number of rows
-    	try { if (elements.length == array[0].length) throw new Exception();}
+    	//check if the inserted number of elements is different to the matrix number of rows
+    	try { if (elements.length != array[0].length) throw new Exception();}
     	catch (Exception insertedNumbersOfRowsDifferent) {
     		System.out.println("The inserted number of rows is different from the matrix.");
     		return array;
@@ -257,7 +428,7 @@ public class DoubleMatrix extends Objects{
 	        }
 	    }
 	    
-	    //Insert the sorted element
+	    //Insert the sorted elements
         for (int i = 0; i<line; i++){
             sorted[i]=oldSorted[i];
         }
@@ -272,16 +443,7 @@ public class DoubleMatrix extends Objects{
     
     //Inserting a line
     public double[][] insertLine(double[] elements, int line, boolean sortedLine){
-    	
-    	//check if the matrix arrays have the same number of rows
-    	for (int i = 1; i < array.length; i++) {
-			try {if (array[i].length != array[i-1].length) throw new Exception();}
-			catch (Exception matrixNumbersOfRowsDifferent) {
-				System.out.println("The number of rows is different for each array.");
-				return array;
-			}
-		}
-    	
+    	    	
     	//check if the inserted number of elements is equal to the matrix number of rows
     	try { if (elements.length == array[0].length) throw new Exception();}
     	catch (Exception insertedNumbersOfRowsDifferent) {
@@ -329,15 +491,13 @@ public class DoubleMatrix extends Objects{
     
     //Inserting a row
     public double[][] insertRow(double[] elements, int row){
-    	//check if the matrix arrays have the same number of rows
-    	//check if the array have the same number of rows and if the elements have the same number of lines than the array
-    	for (int line = 1; line < array.length; line++) {
-   			try { if (!(array[line].length == array[line-1].length && elements.length == array.length)) throw new Exception();}
-   			catch (Exception ex) {
-   				System.out.println("The number of rows are different for each array.");
-   				return array;
-   			}
-   		}
+    	//check if the elements have the same number of lines than the array
+		try {if (elements.length != array.length) throw new Exception();}
+		catch (Exception insertedNumbersOfLinesDifferent) {
+			System.out.println("The inserted number of lines is different for each array.");
+			return array;
+		}
+
     	//check if the row is out bounds
 		try { if (row>array[0].length || row<0 ) throw new ArrayIndexOutOfBoundsException();}
         catch (ArrayIndexOutOfBoundsException OutOfBoundsException) {
@@ -345,6 +505,7 @@ public class DoubleMatrix extends Objects{
             return array;
         }
 		
+		//Save the old values and initialize the new matrix
         double[][] oldArray = array;
         array = new double[oldArray.length][oldArray[0].length+1];
  
@@ -358,48 +519,53 @@ public class DoubleMatrix extends Objects{
 	            array[line][i]=oldArray[line][i-1];
 	        }
 	    }
+	    
+        return array;
+    }
+    
+    //Inserting a row
+    public double[][] insertRow(double[] elements, int row, boolean sorted){
+    	//check if the elements have the same number of lines than the array
+		try {if (elements.length != array.length) throw new Exception();}
+		catch (Exception insertedNumbersOfLinesDifferent) {
+			System.out.println("The inserted number of lines is different for each array.");
+			return array;
+		}
+
+    	//check if the row is out bounds
+		try { if (row>array[0].length || row<0 ) throw new ArrayIndexOutOfBoundsException();}
+        catch (ArrayIndexOutOfBoundsException OutOfBoundsException) {
+            System.out.println("Array Index is Out of Bounds");
+            return array;
+        }
+		
+		//Save the old values and initialize the new matrix
+        double[][] oldArray = array;
+        array = new double[oldArray.length][oldArray[0].length+1];
+ 
+    	//insert the element and change the line which it was inserted
+	    for (int line = 0; line < oldArray.length; line++) {
+    		for (int i = 0; i<row; i++){
+	            array[line][i]=oldArray[line][i];
+	        }
+	        array[line][row]=elements[line];
+	        for (int i = row+1; i< array[line].length; i++){
+	            array[line][i]=oldArray[line][i-1];
+	        }
+	    }
+	    
+	    //case sorted is false, make sorted array false
+	    if (!sorted) {
+		    for (int i = 0; i < this.sorted.length; i++){
+		        this.sorted[i]=false;
+		    }
+	    }
+	    
         return array;
     }   
     
-//    //Inserting an element
-//    //Big-O: O(n*m)
-//    public double[][] insertElement(double element,int line,int row){
-//        try { if (row>array[line].length || row<0 || line>=array.length || line<0) throw new ArrayIndexOutOfBoundsException();}
-//        catch (ArrayIndexOutOfBoundsException OutOfBoundsException) {
-//            System.out.println("Array Index is Out of Bounds");
-//            return array;
-//        }
-//        double[][] oldArray = array;
-//        //case the element is going to be inserted in the last index
-//        if (row == array[line].length) {
-//            array = new double[oldArray.length][oldArray[line].length+1];
-//            array[line][oldArray[line].length]=element;
-//        }
-//        //case the element is going to be inserted elsewhere
-//        else {
-//            array = new double[oldArray.length][oldArray[line].length + 1];
-//        }
-//        //copy the arrays that won't be changed
-//        for (int i = 0; i < oldArray.length; i++) {
-//			for (int j = 0; j < oldArray[i].length; j++) {
-//				if(i != line) {
-//					array[i][j]=oldArray[i][j];
-//				}
-//			}
-//		}
-//        //insert the element and change the line which it was inserted
-//        for (int i = 0; i<row; i++){
-//            array[line][i]=oldArray[line][i];
-//        }
-//        array[line][row]=element;
-//        for (int i = row+1; i< array[line].length; i++){
-//            array[line][i]=oldArray[line][i-1];
-//        }
-//        return array;
-//    } 
-    
-    
     //Sorting the Data
+    
     //Insertion Sort
     //Big-O O(m*n²)
     public double[][] insertionSort(int line){
@@ -457,12 +623,5 @@ public class DoubleMatrix extends Objects{
         	System.out.println();
         }
     }
-    
-    //Print Array
-    public void printArray(){
-        for (int i = 0; i<array.length; i++){
-            System.out.print(array[i]+"\t");
-        }
-        System.out.println();
-    }    
+     
 }

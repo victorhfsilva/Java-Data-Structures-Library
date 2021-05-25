@@ -2,7 +2,7 @@ package array;
 
 public class IntegersMath extends Integers {
 
-	//Constructors
+		//Constructors
 		public IntegersMath(int[] array, boolean sorted) {
 			super(array, sorted);
 		}
@@ -27,38 +27,42 @@ public class IntegersMath extends Integers {
 		}
 		//Sum of the array elements with num
 		public int[] sum(int num) {
+			int[] newArray = new int[getArray().length];
 			for (int i = 0; i < getArray().length; i++) {
-				setElementAt(getArray()[i]+num,i);			
+				newArray[i]= getArray()[i]+num;			
 			}
-			return getArray();
+			return newArray;
 		}
 		//Subtraction of the array elements with num
 		public int[] subtraction(int num) {
+			int[] newArray = new int[getArray().length];
 			for (int i = 0; i < getArray().length; i++) {
-				setElementAt(getArray()[i]-num,i);			
+				newArray[i]= getArray()[i]-num;			
 			}
-			return getArray();
+			return newArray;
 		}
 		//Multiplication of the array elements with num
 		public int[] multiplication(int num) {
+			int[] newArray = new int[getArray().length];
 			for (int i = 0; i < getArray().length; i++) {
-				setElementAt(getArray()[i]*num,i);			
+				newArray[i]= getArray()[i]*num;			
 			}
-			return getArray();
+			return newArray;
 		}
 		//Division of the array elements with num
 		public int[] division(int num) {
+			int[] newArray = new int[getArray().length];
 			for (int i = 0; i < getArray().length; i++) {
-				setElementAt(getArray()[i]/num,i);			
+				newArray[i]= getArray()[i]/num;			
 			}
-			return getArray();
+			return newArray;
 		}
 		//Remainder of the array elements with num
 		public int[] remainder(int num) {
+			int[] newArray = new int[getArray().length];
 			for (int i = 0; i < getArray().length; i++) {
-				setElementAt(getArray()[i]%num,i);			
+				newArray[i]= getArray()[i]%num;			
 			}
-			return getArray();
+			return newArray;
 		}
-	
 }

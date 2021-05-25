@@ -26,38 +26,43 @@ public class DoublesMath extends Doubles{
 	}
 	//Sum of the array elements with num
 	public double[] sum(double num) {
+		double[] newArray = new double[getArray().length];
 		for (int i = 0; i < getArray().length; i++) {
-			setElementAt(getArray()[i]+num,i);			
+			newArray[i]= getArray()[i]+num;			
 		}
-		return getArray();
+		return newArray;
 	}
 	//Subtraction of the array elements with num
 	public double[] subtraction(double num) {
+		double[] newArray = new double[getArray().length];
 		for (int i = 0; i < getArray().length; i++) {
-			setElementAt(getArray()[i]-num,i);			
+			newArray[i]= getArray()[i]-num;			
 		}
-		return getArray();
+		return newArray;
 	}
 	//Multiplication of the array elements with num
 	public double[] multiplication(double num) {
+		double[] newArray = new double[getArray().length];
 		for (int i = 0; i < getArray().length; i++) {
-			setElementAt(getArray()[i]*num,i);			
+			newArray[i]= getArray()[i]*num;			
 		}
-		return getArray();
+		return newArray;
 	}
 	//Division of the array elements with num
 	public double[] division(double num) {
+		double[] newArray = new double[getArray().length];
 		for (int i = 0; i < getArray().length; i++) {
-			setElementAt(getArray()[i]/num,i);			
+			newArray[i]= getArray()[i]/num;			
 		}
-		return getArray();
+		return newArray;
 	}
 	//Remainder of the array elements with num
 	public double[] remainder(double num) {
+		double[] newArray = new double[getArray().length];
 		for (int i = 0; i < getArray().length; i++) {
-			setElementAt(getArray()[i]%num,i);			
+			newArray[i]= getArray()[i]%num;			
 		}
-		return getArray();
+		return newArray;
 	}
 	
 }

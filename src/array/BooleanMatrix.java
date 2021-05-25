@@ -2,24 +2,24 @@ package array;
 
 public class BooleanMatrix {
 	
-private boolean[][] array;
+private boolean[][] matrix;
 	
 	//Getters
-	public boolean[][] getArray() {return array;}
+	public boolean[][] getMatrix() {return matrix;}
 	
 	//Setters
-	public void setArray(boolean[][] array) {this.array = array;}
+	public void setMatrix(boolean[][] matrix) {this.matrix = matrix;}
 	
     //Constructors
-    public BooleanMatrix(boolean[][] array){		
+    public BooleanMatrix(boolean[][] matrix){		
     	//create an array with the number o rows in each line
     	int temp;
-    	int[] length = new int[array.length];
-		for (int line = 0; line < array.length; line++) {
-			length[line]=array[line].length;
+    	int[] length = new int[matrix.length];
+		for (int line = 0; line < matrix.length; line++) {
+			length[line]=matrix[line].length;
 		}
 		//sort this array
-		for (int i = 1; i < array.length; i++) {
+		for (int i = 1; i < matrix.length; i++) {
 	            for (int j=i; j>0; j--){
 	                if (length[i]<length[j-1]){
                     	temp =  length[j-1];
@@ -36,19 +36,19 @@ private boolean[][] array;
 	       
     	//check if each line of the array has the same number of rows
 		try {
-			for (int line = 1; line < array.length; line++) {
-				if (array[line].length != array[line-1].length) throw new Exception();
-				this.array = array;
+			for (int line = 1; line < matrix.length; line++) {
+				if (matrix[line].length != matrix[line-1].length) throw new Exception();
+				this.matrix = matrix;
 			}
 		}
 		//case not create a matrix with a number of rows equal to the inputed longer row
 		catch (Exception matrixNumbersOfRowsDifferent) {
 			System.out.println("The number of rows is different for each array.");
-			this.array = new boolean[array.length][length[length.length-1]];
+			this.matrix = new boolean[matrix.length][length[length.length-1]];
 			//copy the inputed arrays to the new matrix
-			for (int line = 0; line < array.length; line++) {
-				for (int row = 0; row < array[line].length; row++) {
-					this.array[line][row]=array[line][row];
+			for (int line = 0; line < matrix.length; line++) {
+				for (int row = 0; row < matrix[line].length; row++) {
+					this.matrix[line][row]=matrix[line][row];
 				}
 			}
 		}
@@ -59,12 +59,12 @@ private boolean[][] array;
     //Big-O: O(1)
     public boolean[][] setElementAt(boolean element, int line, int row) {
     	try {
-    		array[line][row]=element;
-    		return array;
+    		matrix[line][row]=element;
+    		return matrix;
     	}
     	catch(ArrayIndexOutOfBoundsException OutOfBoundsException){
             System.out.println("Array Index is Out of Bounds");
-            return array;
+            return matrix;
         }
     }
        
@@ -72,8 +72,8 @@ private boolean[][] array;
     //Big-O: O(1)
     public boolean getElementAt(int line,int row){
         try {
-            System.out.println(array[line][row]);
-            return array[line][row];
+            System.out.println(matrix[line][row]);
+            return matrix[line][row];
         }
         catch(ArrayIndexOutOfBoundsException OutOfBoundsException){
             System.out.println("Array Index is Out of Bounds");
@@ -86,9 +86,9 @@ private boolean[][] array;
     	int[][] rowLine = new int[][] {};
     	//Linear Search
         //Big-O O(n*m)
-        for (int line = 0; line<array.length; line++) {
-    		for (int row = 0; row<array[line].length; row++){
-                if (element == array[line][row]) {
+        for (int line = 0; line<matrix.length; line++) {
+    		for (int row = 0; row<matrix[line].length; row++){
+                if (element == matrix[line][row]) {
                 	System.out.println("The element is in the line "+line+" and row "+row);                	
                 	//Save the old values and initialize the new matrix
             		int[][] oldRowLine = rowLine;            		
@@ -114,15 +114,15 @@ private boolean[][] array;
 		//initialize the row array
     	int[] row = new int[]{};    	
     	//Check if the line is out of bounds
-    	try {if (line > array.length || line<0) throw new ArrayIndexOutOfBoundsException();}
+    	try {if (line > matrix.length || line<0) throw new ArrayIndexOutOfBoundsException();}
 		catch (ArrayIndexOutOfBoundsException OutOfBoundsException) {
 			System.out.println("Array Index is Out of Bounds");			
 	        return row;
 		}    	
     	//Linear Search
     	//Big-O O(n)
-   		for (int j = 0; j<array[line].length; j++){
-                if (element == array[line][j]) {
+   		for (int j = 0; j<matrix[line].length; j++){
+                if (element == matrix[line][j]) {
                     System.out.println("The element is in the row "+j);		                    
                     //Save the old values and initialize the new matrix
     	       		int[] oldRow = row;		    	       		
@@ -144,36 +144,36 @@ private boolean[][] array;
     public boolean[][] insertLine(boolean[] elements, int line){
     	
     	//check if the inserted number of elements is different to the matrix number of rows
-    	try { if (elements.length != array[0].length) throw new Exception();}
+    	try { if (elements.length != matrix[0].length) throw new Exception();}
     	catch (Exception insertedNumbersOfRowsDifferent) {
     		System.out.println("The inserted number of rows is different from the matrix.");
-    		return array;
+    		return matrix;
     	}
     	
     	//check if the line is out bounds
-    	try { if (line>array.length || line<0 ) throw new ArrayIndexOutOfBoundsException();}
+    	try { if (line>matrix.length || line<0 ) throw new ArrayIndexOutOfBoundsException();}
 	        catch (ArrayIndexOutOfBoundsException OutOfBoundsException) {
 	            System.out.println("Array Index is Out of Bounds");
-	            return array;
+	            return matrix;
 	        }
     	
 		//Save the old values and initialize the new matrix
-		boolean[][] oldArray = array;
+		boolean[][] oldArray = matrix;
 		
-		array = new boolean[oldArray.length+1][oldArray[0].length];
+		matrix = new boolean[oldArray.length+1][oldArray[0].length];
 		
 		//Insert the line of elements
 	    for (int row = 0; row < oldArray[0].length; row++) {
     		for (int i = 0; i<line; i++){
-	            array[i][row]=oldArray[i][row];
+	            matrix[i][row]=oldArray[i][row];
 	        }
-	        array[line][row]=elements[row];
-	        for (int i = line+1; i < array.length; i++){
-	            array[i][row]=oldArray[i-1][row];
+	        matrix[line][row]=elements[row];
+	        for (int i = line+1; i < matrix.length; i++){
+	            matrix[i][row]=oldArray[i-1][row];
 	        }
 	    }
 	    		
-		return array;
+		return matrix;
     	
     }
     
@@ -181,42 +181,42 @@ private boolean[][] array;
     //Inserting a row
     public boolean[][] insertRow(boolean[] elements, int row){
     	//check if the elements have the same number of lines than the array
-		try {if (elements.length != array.length) throw new Exception();}
+		try {if (elements.length != matrix.length) throw new Exception();}
 		catch (Exception insertedNumbersOfLinesDifferent) {
 			System.out.println("The inserted number of lines is different for each array.");
-			return array;
+			return matrix;
 		}
 
     	//check if the row is out bounds
-		try { if (row>array[0].length || row<0 ) throw new ArrayIndexOutOfBoundsException();}
+		try { if (row>matrix[0].length || row<0 ) throw new ArrayIndexOutOfBoundsException();}
         catch (ArrayIndexOutOfBoundsException OutOfBoundsException) {
             System.out.println("Array Index is Out of Bounds");
-            return array;
+            return matrix;
         }
 		
 		//Save the old values and initialize the new matrix
-        boolean[][] oldArray = array;
-        array = new boolean[oldArray.length][oldArray[0].length+1];
+        boolean[][] oldArray = matrix;
+        matrix = new boolean[oldArray.length][oldArray[0].length+1];
  
     	//insert the element and change the line which it was inserted
 	    for (int line = 0; line < oldArray.length; line++) {
     		for (int i = 0; i<row; i++){
-	            array[line][i]=oldArray[line][i];
+	            matrix[line][i]=oldArray[line][i];
 	        }
-	        array[line][row]=elements[line];
-	        for (int i = row+1; i< array[line].length; i++){
-	            array[line][i]=oldArray[line][i-1];
+	        matrix[line][row]=elements[line];
+	        for (int i = row+1; i< matrix[line].length; i++){
+	            matrix[line][i]=oldArray[line][i-1];
 	        }
 	    }
 	    
-        return array;
+        return matrix;
     }
     
     //Print Matrix
     public void printMatrix(){
-    	for (int line = 0; line<array.length;line++){
-           	for (int row = 0; row < array[line].length; row++) {
-        		System.out.print(array[line][row]+"\t");
+    	for (int line = 0; line<matrix.length;line++){
+           	for (int row = 0; row < matrix[line].length; row++) {
+        		System.out.print(matrix[line][row]+"\t");
 			}
         	System.out.println();
         }    

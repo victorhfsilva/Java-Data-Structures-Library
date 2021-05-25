@@ -1,11 +1,11 @@
 package array;
 
-public class DoublesMath extends Doubles{
+public class DoubleArrayMath extends DoubleArray{
 	//Constructors
-	public DoublesMath(double[] array, boolean sorted) {
+	public DoubleArrayMath(double[] array, boolean sorted) {
 		super(array, sorted);
 	}
-	public DoublesMath(double[] array) {
+	public DoubleArrayMath(double[] array) {
 		super(array);
 	}
 	//The array elements summation 

@@ -1,10 +1,10 @@
 package array;
 
-public class Booleans extends Objects {
+public class BooleanArray extends ObjectArray {
 	private boolean[] array;
 
     //Constructors
-    public Booleans(boolean[] array){this.array = array;}
+    public BooleanArray(boolean[] array){this.array = array;}
 
     //Getters
     public boolean[] getArray(){

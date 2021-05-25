@@ -1,10 +1,10 @@
 package array;
 
-public class Strings extends Objects {
+public class StringArray extends ObjectArray {
     private String[] array;
 
     //Constructors
-    public Strings(String[] array){this.array = array;}
+    public StringArray(String[] array){this.array = array;}
 
     //Getters
     public String[] getArray(){

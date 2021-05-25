@@ -1,6 +1,6 @@
 package array;
 
-public class DoubleMatrix extends Objects{
+public class DoubleMatrix extends ObjectArray{
 	
 	private double[][] matrix;
 	private boolean[]  sorted;

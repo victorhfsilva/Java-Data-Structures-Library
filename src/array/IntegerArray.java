@@ -1,14 +1,14 @@
 package array;
 
-public class Integers extends Objects{
+public class IntegerArray extends ObjectArray{
     private int[] array;
     private boolean sorted = false;
 
     //Constructors
-    public Integers(int[] array){
+    public IntegerArray(int[] array){
         this.array = array;
     }
-    Integers(int[] array, boolean sorted){
+    public IntegerArray(int[] array, boolean sorted){
         this.array = array;
         this.sorted = sorted;
     }

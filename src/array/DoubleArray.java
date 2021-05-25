@@ -1,14 +1,14 @@
 package array;
 
-public class Doubles extends Objects{
+public class DoubleArray extends ObjectArray{
     private double[] array;
     private boolean sorted = false;
 
     //Constructors
-    public Doubles(double[] array){
+    public DoubleArray(double[] array){
         this.array = array;
     }
-    Doubles(double[] array, boolean sorted){
+    public DoubleArray(double[] array, boolean sorted){
         this.array = array;
         this.sorted = sorted;
     }
@@ -86,7 +86,7 @@ public class Doubles extends Objects{
 			       	    for (int  i = 0; i < oldRow.length; i++) {
 		       	            row[i]=oldRow[i];
 			       	    }
-			       	    System.out.println("The element is in the row "+row_middle_left);
+			       	    System.out.println("The element is in the index "+row_middle_left);
 			       	    //Save the row index
 			       	    row[oldRow.length]=row_middle_left;
 			       	    //Save the row array and subtract the index of row_middle_left
@@ -101,7 +101,7 @@ public class Doubles extends Objects{
 			       	    for (int  i = 0; i < oldRow.length; i++) {
 		       	            row[i]=oldRow[i];
 			       	    }
-			       	    System.out.println("The element is in the row "+row_middle_right);
+			       	    System.out.println("The element is in the index "+row_middle_right);
 			       	    //Save the row index		       	    
 			       	    row[oldRow.length]=row_middle_right;		       	    
 			       	    //Save the row array and add the index of row_middle_right
@@ -139,7 +139,7 @@ public class Doubles extends Objects{
     }
 
   //Searching for an element while setting if the row is sorted
-    public int[] indexOfElement(int element, boolean sorted){
+    public int[] indexOfElement(double element, boolean sorted){
         this.sorted = sorted;
     	int[] row = new int[] {};
     	//Binary Search

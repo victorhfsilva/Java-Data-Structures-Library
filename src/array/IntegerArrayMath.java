@@ -1,12 +1,12 @@
 package array;
 
-public class IntegersMath extends Integers {
+public class IntegerArrayMath extends IntegerArray {
 
 		//Constructors
-		public IntegersMath(int[] array, boolean sorted) {
+		public IntegerArrayMath(int[] array, boolean sorted) {
 			super(array, sorted);
 		}
-		public IntegersMath(int[] array) {
+		public IntegerArrayMath(int[] array) {
 			super(array);
 		}
 		//The array elements summation 

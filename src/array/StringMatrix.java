@@ -1,6 +1,6 @@
 package array;
 
-public class StringMatrix extends Objects {
+public class StringMatrix extends ObjectArray {
 	
 	private String[][] matrix;
 	

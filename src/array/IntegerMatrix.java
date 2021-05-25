@@ -1,6 +1,6 @@
 package array;
 
-public class IntegerMatrix extends Objects {
+public class IntegerMatrix extends ObjectArray {
 	
 	private int[][] matrix;
 	private boolean[]  sorted;

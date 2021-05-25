@@ -1,21 +1,20 @@
 package array;
 
-public class DoubleMatrix extends Objects{
+public class IntegerMatrix extends Objects {
 	
-	private double[][] array;
+	private int[][] array;
 	private boolean[]  sorted;
 	
 	//Getters
-	public double[][] getArray() {return array;}
+	public int[][] getArray() {return array;}
 	public boolean[] getSorted(){return sorted;}
 	
 	//Setters
-	public void setArray(double[][] array) {this.array = array;}
+	public void setArray(int[][] array) {this.array = array;}
 	public void setSorted(boolean[] sorted){this.sorted = sorted;}
 	
     //Constructors
-    public DoubleMatrix(double[][] array){
-		
+    public IntegerMatrix(int[][] array){		
     	//create an array with the number o rows in each line
     	int temp;
     	int[] length = new int[array.length];
@@ -48,7 +47,7 @@ public class DoubleMatrix extends Objects{
 		//case not create a matrix with a number of rows equal to the inputed longer row
 		catch (Exception matrixNumbersOfRowsDifferent) {
 			System.out.println("The number of rows is different for each array.");
-			this.array = new double[array.length][length[length.length-1]];
+			this.array = new int[array.length][length[length.length-1]];
 			//copy the inputed arrays to the new matrix
 			for (int line = 0; line < array.length; line++) {
 				for (int row = 0; row < array[line].length; row++) {
@@ -63,7 +62,7 @@ public class DoubleMatrix extends Objects{
 		}
     }
     
-    public DoubleMatrix(double[][] array, boolean[] sorted){
+    public IntegerMatrix(int[][] array, boolean[] sorted){
     	
     	//create an array with the number o rows in each line
     	int temp;
@@ -97,7 +96,7 @@ public class DoubleMatrix extends Objects{
 		//case not create a matrix with a number of rows equal to the inputed longer row
 		catch (Exception matrixNumbersOfRowsDifferent) {
 			System.out.println("The number of rows is different for each array.");
-			this.array = new double[array.length][length[length.length-1]];
+			this.array = new int[array.length][length[length.length-1]];
 			//copy the inputed arrays to the new matrix
 			for (int line = 0; line < array.length; line++) {
 				for (int row = 0; row < array[line].length; row++) {
@@ -118,7 +117,7 @@ public class DoubleMatrix extends Objects{
     
     //Setting an element of the Matrix
     //Big-O: O(1)
-    public double[][] setElementAt(double element, int line, int row) {
+    public int[][] setElementAt(int element, int line, int row) {
     	try {
     		array[line][row]=element;
     		return array;
@@ -144,7 +143,7 @@ public class DoubleMatrix extends Objects{
    
     //Accessing an element of the Matrix Array
     //Big-O: O(1)
-    public double getElementAt(int line,int row){
+    public int getElementAt(int line,int row){
         try {
             System.out.println(array[line][row]);
             return array[line][row];
@@ -290,7 +289,7 @@ public class DoubleMatrix extends Objects{
    }
   
     //Searching for an element in a specific row of the matrix while setting if the row is sorted
-    public int[] indexOfElement(double element,int line, boolean sortedLine) {
+    public int[] indexOfElement(int element,int line, boolean sortedLine) {
     	//initialize the row array
     	int[] row = new int[]{};
     	//Check if the line is out of bounds
@@ -383,7 +382,7 @@ public class DoubleMatrix extends Objects{
     }
     
     //Inserting a line
-    public double[][] insertLine(double[] elements, int line){
+    public int[][] insertLine(int[] elements, int line){
     	
     	//check if the inserted number of elements is different to the matrix number of rows
     	try { if (elements.length != array[0].length) throw new Exception();}
@@ -400,10 +399,10 @@ public class DoubleMatrix extends Objects{
 	        }
     	
 		//Save the old values and initialize the new matrix
-		double[][] oldArray = array;
+		int[][] oldArray = array;
 		boolean[] oldSorted = sorted;
 		
-		array = new double[oldArray.length+1][oldArray[0].length];
+		array = new int[oldArray.length+1][oldArray[0].length];
     	sorted = new boolean[oldSorted.length+1];
 		
 		//Insert the line of elements
@@ -431,7 +430,7 @@ public class DoubleMatrix extends Objects{
     }
     
     //Inserting a line
-    public double[][] insertLine(double[] elements, int line, boolean sortedLine){
+    public int[][] insertLine(int[] elements, int line, boolean sortedLine){
     	    	
     	//check if the inserted number of elements is equal to the matrix number of rows
     	try { if (elements.length == array[0].length) throw new Exception();}
@@ -448,10 +447,10 @@ public class DoubleMatrix extends Objects{
 	        }
     	
 		//Save the old values and initialize the new matrix
-		double[][] oldArray = array;
+		int[][] oldArray = array;
 		boolean[] oldSorted = sorted;
 		
-		array = new double[oldArray.length+1][oldArray[0].length];
+		array = new int[oldArray.length+1][oldArray[0].length];
     	sorted = new boolean[oldSorted.length+1];
 		
 		//Insert the line of elements
@@ -479,7 +478,7 @@ public class DoubleMatrix extends Objects{
     }
     
     //Inserting a row
-    public double[][] insertRow(double[] elements, int row){
+    public int[][] insertRow(int[] elements, int row){
     	//check if the elements have the same number of lines than the array
 		try {if (elements.length != array.length) throw new Exception();}
 		catch (Exception insertedNumbersOfLinesDifferent) {
@@ -495,8 +494,8 @@ public class DoubleMatrix extends Objects{
         }
 		
 		//Save the old values and initialize the new matrix
-        double[][] oldArray = array;
-        array = new double[oldArray.length][oldArray[0].length+1];
+        int[][] oldArray = array;
+        array = new int[oldArray.length][oldArray[0].length+1];
  
     	//insert the element and change the line which it was inserted
 	    for (int line = 0; line < oldArray.length; line++) {
@@ -513,7 +512,7 @@ public class DoubleMatrix extends Objects{
     }
     
     //Inserting a row
-    public double[][] insertRow(double[] elements, int row, boolean sorted){
+    public int[][] insertRow(int[] elements, int row, boolean sorted){
     	//check if the elements have the same number of lines than the array
 		try {if (elements.length != array.length) throw new Exception();}
 		catch (Exception insertedNumbersOfLinesDifferent) {
@@ -529,8 +528,8 @@ public class DoubleMatrix extends Objects{
         }
 		
 		//Save the old values and initialize the new matrix
-        double[][] oldArray = array;
-        array = new double[oldArray.length][oldArray[0].length+1];
+        int[][] oldArray = array;
+        array = new int[oldArray.length][oldArray[0].length+1];
  
     	//insert the element and change the line which it was inserted
 	    for (int line = 0; line < oldArray.length; line++) {
@@ -557,8 +556,8 @@ public class DoubleMatrix extends Objects{
     
     //Insertion Sort
     //Big-O O(m*n²)
-    public double[][] insertionSort(int line){
-        double temp;
+    public int[][] insertionSort(int line){
+        int temp;
         for (int i = 1; i<array[line].length; i++){
             for (int j=i; j>0; j--){
                 if (array[line][i]<array[line][j-1]){
@@ -581,8 +580,8 @@ public class DoubleMatrix extends Objects{
 
     //Bubble Sort
     //Big-O O(m*n²)
-    public double[][] bubbleSort(int line){
-        double temp;
+    public int[][] bubbleSort(int line){
+        int temp;
         for (int ult = array.length-1; ult > 0; ult--){
             for (int row = 0; row<ult; row++){
                 if (array[line][row]>array[line][row+1]){
@@ -603,14 +602,14 @@ public class DoubleMatrix extends Objects{
         return array;
     }
     
-    //Print Matrix
+    //Print MAtrix
     public void printMatrix(){
-        for (int line = 0; line<array.length;line++){
+    	for (int line = 0; line<array.length;line++){
            	for (int row = 0; row < array[line].length; row++) {
         		System.out.print(array[line][row]+"\t");
 			}
         	System.out.println();
-        }
+        }    
     }
-     
+
 }

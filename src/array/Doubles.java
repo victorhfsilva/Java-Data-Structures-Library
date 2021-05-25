@@ -25,6 +25,19 @@ public class Doubles extends Objects{
     }
     public void setSorted(boolean sorted){ this.sorted = sorted;}
 
+    //Setting an element of the Matrix
+    //Big-O: O(1)
+    public double[] setElementAt(double element, int row) {
+    	try {
+    		array[row]=element;
+    		return array;
+    	}
+    	catch(ArrayIndexOutOfBoundsException OutOfBoundsException){
+            System.out.println("Array Index is Out of Bounds");
+            return array;
+        }
+    }
+    
     //Accessing an element
     //Big-O: O(1)
     public double getElementAt(int index){
@@ -40,38 +53,178 @@ public class Doubles extends Objects{
 
     //Searching for an element
     //sorted is true if the array is sorted
-    public int indexOfElement(double element){
-        //Binary Search
-        //Big-O: O(log2(n))
+    public int[] indexOfElement(double element){
+    	int[] row = new int[] {};
+    	//Binary Search
+        //Big-O: O(log2(n)+k)
         if (sorted){
-            int f = array.length-1;
-            int i = 0;
-            while(i<=f){
-                int m = (i+f)/2;
-                if (element>array[m]) i = m+1;
-                else if (element<array[m]) f = m-1;
-                else if (element==array[m]) {
-                    System.out.println("The element is in the index "+m);
-                    return m;
+            int row_end = array.length-1;
+            int row_beginning = 0;
+            while(row_beginning<=row_end){
+                int row_middle = (row_beginning+row_end)/2;
+                //case the element is bigger than the middle value
+                if (element>array[row_middle]) row_beginning = row_middle+1;
+                //case the element is smaller than the middle value
+                else if (element<array[row_middle]) row_end = row_middle-1;
+                //case the element is equal to the middle value
+                else if (element==array[row_middle]) {
+                    System.out.println("The element is in the index "+row_middle);
+                    //Initialize a new row array with length 1
+		            row = new int[row.length+1];	       	    
+		       	    //Save the row value in the index 1
+		       	    row[0]=row_middle;
+		       	    //Save the row array in oldRow
+		       	    int[] oldRow = row;
+		       	    //create variables with the row_middle left and right boundaries
+		       	    int row_middle_left = row_middle-1;
+		       	    int row_middle_right = row_middle+1;
+		       	    //check if the left elements have similar value to row_middle
+		       	    while(element == array[row_middle_left]) {
+		       	    	//Initialize the new matrix		       			       
+			       		row = new int[row.length+1];		       		
+			       		//Insert the old values
+			       	    for (int  i = 0; i < oldRow.length; i++) {
+		       	            row[i]=oldRow[i];
+			       	    }
+			       	    System.out.println("The element is in the row "+row_middle_left);
+			       	    //Save the row index
+			       	    row[oldRow.length]=row_middle_left;
+			       	    //Save the row array and subtract the index of row_middle_left
+			       	    row_middle_left--;
+		       	    	oldRow = row;	
+		       	    }		       	    
+		       	    //check if the left element has similar value
+		       	    while(element == array[row_middle_right]) {
+		       	    	//Initialize the new matrix	       	    	
+			       		row = new int[row.length+1];		       		
+			       		//Insert the old values
+			       	    for (int  i = 0; i < oldRow.length; i++) {
+		       	            row[i]=oldRow[i];
+			       	    }
+			       	    System.out.println("The element is in the row "+row_middle_right);
+			       	    //Save the row index		       	    
+			       	    row[oldRow.length]=row_middle_right;		       	    
+			       	    //Save the row array and add the index of row_middle_right
+			       	    oldRow = row;
+		       	    	row_middle_right++;
+		       	    }
+		       	    return row;
                 }
             }
-            System.out.println("The element is not in the Array.");
-            return -1;
+            //case the element is not found return a empty array
+ 	       	if (row.length == 0) System.out.println("The element is not in the Array.");
+            return row;
         }
         else{
             //Linear Search
             //Big-O O(n)
-            for (int i = 0; i<array.length; i++){
-                if (element == array[i]) {
-                    System.out.println("The element is in the index "+i);
-                    return i;
+            for (int j = 0; j<array.length; j++){
+                if (element == array[j]) {
+                    System.out.println("The element is in the index "+j);
+                    //Save the old values and initialize the new matrix
+    	       		int[] oldRow = row;	
+    	       		row = new int[row.length+1];		    	       		
+    	       		//Insert the old values
+    	       	    for (int  i = 0; i < oldRow.length; i++) {
+           	            row[i]=oldRow[i];
+    	       	    }
+    	       	    //Save the row index
+    	       	    row[oldRow.length]=j;
                 }
             }
-            System.out.println("The element is not in the Array.");
+            //case the element is not found return a empty array
+	       	if (row.length == 0) System.out.println("The element is not in the Array.");
+	       	return row;
         }
-        return -1;
     }
 
+  //Searching for an element while setting if the row is sorted
+    public int[] indexOfElement(int element, boolean sorted){
+        this.sorted = sorted;
+    	int[] row = new int[] {};
+    	//Binary Search
+        //Big-O: O(log2(n)+k)
+        if (sorted){
+            int row_end = array.length-1;
+            int row_beginning = 0;
+            while(row_beginning<=row_end){
+                int row_middle = (row_beginning+row_end)/2;
+                //case the element is bigger than the middle value
+                if (element>array[row_middle]) row_beginning = row_middle+1;
+                //case the element is smaller than the middle value
+                else if (element<array[row_middle]) row_end = row_middle-1;
+                //case the element is equal to the middle value
+                else if (element==array[row_middle]) {
+                    System.out.println("The element is in the index "+row_middle);
+                    //Initialize a new row array with length 1
+		            row = new int[row.length+1];	       	    
+		       	    //Save the row value in the index 1
+		       	    row[0]=row_middle;
+		       	    //Save the row array in oldRow
+		       	    int[] oldRow = row;
+		       	    //create variables with the row_middle left and right boundaries
+		       	    int row_middle_left = row_middle-1;
+		       	    int row_middle_right = row_middle+1;
+		       	    //check if the left elements have similar value to row_middle
+		       	    while(element == array[row_middle_left]) {
+		       	    	//Initialize the new matrix		       			       
+			       		row = new int[row.length+1];		       		
+			       		//Insert the old values
+			       	    for (int  i = 0; i < oldRow.length; i++) {
+		       	            row[i]=oldRow[i];
+			       	    }
+			       	    System.out.println("The element is in the row "+row_middle_left);
+			       	    //Save the row index
+			       	    row[oldRow.length]=row_middle_left;
+			       	    //Save the row array and subtract the index of row_middle_left
+			       	    row_middle_left--;
+		       	    	oldRow = row;	
+		       	    }		       	    
+		       	    //check if the left element has similar value
+		       	    while(element == array[row_middle_right]) {
+		       	    	//Initialize the new matrix	       	    	
+			       		row = new int[row.length+1];		       		
+			       		//Insert the old values
+			       	    for (int  i = 0; i < oldRow.length; i++) {
+		       	            row[i]=oldRow[i];
+			       	    }
+			       	    System.out.println("The element is in the row "+row_middle_right);
+			       	    //Save the row index		       	    
+			       	    row[oldRow.length]=row_middle_right;		       	    
+			       	    //Save the row array and add the index of row_middle_right
+			       	    oldRow = row;
+		       	    	row_middle_right++;
+		       	    }
+		       	    return row;
+                }
+            }
+            //case the element is not found return a empty array
+ 	       	if (row.length == 0) System.out.println("The element is not in the Array.");
+            return row;
+        }
+        else{
+            //Linear Search
+            //Big-O O(n)
+            for (int j = 0; j<array.length; j++){
+                if (element == array[j]) {
+                    System.out.println("The element is in the index "+j);
+                    //Save the old values and initialize the new matrix
+    	       		int[] oldRow = row;	
+    	       		row = new int[row.length+1];		    	       		
+    	       		//Insert the old values
+    	       	    for (int  i = 0; i < oldRow.length; i++) {
+           	            row[i]=oldRow[i];
+    	       	    }
+    	       	    //Save the row index
+    	       	    row[oldRow.length]=j;
+                }
+            }
+            //case the element is not found return a empty array
+	       	if (row.length == 0) System.out.println("The element is not in the Array.");
+	       	return row;
+        }
+    }
+    
     //Inserting an element
     //Big-O: O(n)
     public double[] insertElement(double element,int index){

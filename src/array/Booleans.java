@@ -1,24 +1,24 @@
 package array;
 
-public class Strings extends Objects {
-    private String[] array;
+public class Booleans extends Objects {
+	private boolean[] array;
 
     //Constructors
-    public Strings(String[] array){this.array = array;}
+    public Booleans(boolean[] array){this.array = array;}
 
     //Getters
-    public String[] getArray(){
+    public boolean[] getArray(){
         return array;
     }
 
     //Setters
-    public void setArray(String[] array){
+    public void setArray(boolean[] array){
         this.array=array;
     }
-
+    
     //Setting an element of the Matrix
     //Big-O: O(1)
-    public String[] setElementAt(String element, int row) {
+    public boolean[] setElementAt(boolean element, int row) {
     	try {
     		array[row]=element;
     		return array;
@@ -31,19 +31,19 @@ public class Strings extends Objects {
     
     //Accessing an element
     //Big-O: O(1)
-    public String getElementAt(int index){
+    public boolean getElementAt(int index){
         try {
             System.out.println(array[index]);
             return array[index];
         }
         catch(ArrayIndexOutOfBoundsException exception){
             System.out.println("Array Index is Out of Bounds");
-            return "";
+            return false;
         }
     }
 
     //Searching for an element
-    public int[] indexOfElement(String element){
+    public int[] indexOfElement(boolean element){
     	int[] row = new int[] {};
     	//Linear Search
         //Big-O O(n)
@@ -68,14 +68,14 @@ public class Strings extends Objects {
 
     //Inserting an element
     //Big-O: O(n)
-    public String[] insertElement(String element,int index){
+    public boolean[] insertElement(boolean element,int index){
         try { if (index>array.length || index<0) throw new ArrayIndexOutOfBoundsException();}
         catch (ArrayIndexOutOfBoundsException exception) {
             System.out.println("Array Index is Out of Bounds");
             return array;
         }
-        String[] oldArray = array;
-        array = new String[oldArray.length + 1];        
+        boolean[] oldArray = array;
+        array = new boolean[oldArray.length + 1];        
         //Insert the element
         for (int i = 0; i<index; i++){
             array[i]=oldArray[i];
@@ -89,14 +89,14 @@ public class Strings extends Objects {
 
     //Deleting an element
     //Big-O: O(n)
-    public String[] deleteElement(int index){
+    public boolean[] deleteElement(int index){
         try {if (index>=array.length || index<0) throw new ArrayIndexOutOfBoundsException();}
         catch (ArrayIndexOutOfBoundsException exception){
             System.out.println("Array Index is Out of Bounds");
             return array;
         }
-        String[] oldArray = array;
-        array = new String[oldArray.length-1];
+        boolean[] oldArray = array;
+        array = new boolean[oldArray.length-1];
         for (int i=0; i<index;i++){
             array[i]=oldArray[i];
         }
@@ -114,5 +114,4 @@ public class Strings extends Objects {
         }
         System.out.println();
     }
-
 }

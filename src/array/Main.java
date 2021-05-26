@@ -9,15 +9,15 @@ public class Main {
     	
     	//Object initialization
     	System.out.println("Arrays creation");
-    	DoubleArray doubleArray1 = new DoubleArray(new double[] {1.3, 3.3, 2.5, 2.7, 4.1, 5.7, 6.8});
+    	DoubleArrayMath doubleArray1 = new DoubleArrayMath(new double[] {1.3, 3.3, 2.5, 2.7, 4.1, 5.7, 6.8});
     	doubleArray1.printArray();
-    	DoubleArray doubleArray2 = new DoubleArray(new double[] {1.2, 3.5, 4.7, 5.8, 7.9, 9.2}, true);
+    	DoubleArrayMath doubleArray2 = new DoubleArrayMath(new double[] {1.2, 3.5, 4.7, 5.8, 7.9, 9.2}, true);
     	doubleArray2.printArray();
     	System.out.println();
     	
     	//Getters
-    	double[] double_array1 = doubleArray1.getArray();
-    	boolean double_sorted2 = doubleArray2.getSorted();
+    	double[] array1 = doubleArray1.getArray();
+    	boolean sorted2 = doubleArray2.getSorted();
     	
     	//Setters
     	System.out.println("Arrays setting");
@@ -35,27 +35,239 @@ public class Main {
     	
     	//Get Element At
     	System.out.println("Get Element");
-    	double doubleElement1 = doubleArray1.getElementAt(2);
-    	double doubleElement2 = doubleArray2.getElementAt(3);
+    	double Element1 = doubleArray1.getElementAt(2);
+    	double Element2 = doubleArray2.getElementAt(3);
     	System.out.println();
     	
     	//Index of Element
     	System.out.println("Index Of Element");
-    	int[] doubleIndex1 = doubleArray1.indexOfElement(6.7);
-    	int[] doubleIndex2 = doubleArray2.indexOfElement(4.5);
-    	int[] doubleIndex3 = doubleArray1.indexOfElement(6.7, false);
+    	int[] Index1 = doubleArray1.indexOfElement(6.7);
+    	int[] Index2 = doubleArray2.indexOfElement(4.5);
+    	int[] Index3 = doubleArray1.indexOfElement(6.7, false);
     	System.out.println();
     	
     	//Insert and delete element 
     	System.out.println("Insert and Delete Element");
-    	double[] double_array3 = doubleArray1.insertElement(5.4, 4);
+    	double[] array3 = doubleArray1.insertElement(5.4, 4);
     	doubleArray1.printArray();
-    	double[] double_array4 = doubleArray2.deleteElement(3);
+    	double[] array4 = doubleArray2.deleteElement(3);
     	doubleArray2.printArray();
+    	System.out.println();
     	
+    	//Sorting the array
+    	System.out.println("Sorting the array");
+    	double[] array5 = doubleArray1.insertionSort();
+    	doubleArray1.printArray();
+    	double[] array6 = doubleArray2.bubbleSort();
+    	doubleArray2.printArray();
+    	System.out.println();
     	
+    	//Double Math
+    	System.out.println("Summation and Product");
+    	double summation = doubleArray1.summation();
+    	System.out.println(summation);
+    	double product = doubleArray2.product();
+    	System.out.println(product);
+    	System.out.println();
     	
+    	System.out.println("Scalar Sum");
+    	double[] array7 = doubleArray1.scalarSum(3.4);
+    	doubleArray1.setArray(array7);
+    	doubleArray1.printArray();
+    	System.out.println();
     	
+    	System.out.println("Scalar Subtraction");
+    	double[] array8 = doubleArray1.scalarSubtraction(3.4);
+    	doubleArray1.setArray(array8);
+    	doubleArray1.printArray();
+    	System.out.println();
+    	
+    	System.out.println("Scalar Multiplication");
+    	double[] array9 = doubleArray1.scalarMultiplication(3.4);
+    	doubleArray1.setArray(array9);
+    	doubleArray1.printArray();
+    	System.out.println();
+    	
+    	System.out.println("Scalar Division");
+    	double[] array10 = doubleArray1.scalarDivision(3.4);
+    	doubleArray1.setArray(array10);
+    	doubleArray1.printArray();
+    	System.out.println();
+    	
+    	System.out.println("Scalar Remainder");
+    	double[] array11 = doubleArray1.scalarRemainder(3.4);
+    	doubleArray1.setArray(array11);
+    	doubleArray1.printArray();
+    	System.out.println();
+    	
+    	System.out.println("Array Sum");
+    	double[] array12 = doubleArray1.sum(new double[] {2.1, 4.2, 5.2, 5.7, 8.9, 10.9, 5.2, 9.1});
+    	doubleArray1.setArray(array12);
+    	doubleArray1.printArray();
+    	System.out.println();
+    	
+    	System.out.println("Array Subtraction");
+    	double[] array13 = doubleArray1.subtraction(new double[] {2.1, 4.2, 5.2, 5.7, 8.9, 10.9, 5.2, 9.1});
+    	doubleArray1.setArray(array13);
+    	doubleArray1.printArray();
+    	System.out.println();
+    	
+    	System.out.println("Array Multiplication");
+    	double[] array14 = doubleArray1.elementMultiplication(new double[] {2.1, 4.2, 5.2, 5.7, 8.9, 10.9, 5.2, 9.1});
+    	doubleArray1.setArray(array14);
+    	doubleArray1.printArray();
+    	System.out.println();
+    	
+    	System.out.println("Array Division");
+    	double[] array15 = doubleArray1.elementDivision(new double[] {2.1, 4.2, 5.2, 5.7, 8.9, 10.9, 5.2, 9.1});
+    	doubleArray1.setArray(array15);
+    	doubleArray1.printArray();
+    	System.out.println();
+    	
+    	System.out.println("Array Remainder");
+    	double[] array16 = doubleArray1.elementRemainder(new double[] {1.1, 1.2, 0.2, 1.7, 2.9, 8.9, 0.4, 1.1});
+    	doubleArray1.setArray(array16);
+    	doubleArray1.printArray();
+    	System.out.println();
+    	
+////		INTEGER ARRAY OBJECT
+//    	System.out.println("INTEGER ARRAY");
+//    	System.out.println();
+//    	
+//    	//Object initialization
+//    	System.out.println("Arrays creation");
+//    	IntegerArray integerArray1 = new IntegerArray(new int[] {1, 3, 2, 2, 4, 5, 6});
+//    	integerArray1.printArray();
+//    	IntegerArray  integerArray2 = new IntegerArray (new int[] {1, 3, 4, 5, 7, 9}, true);
+//    	integerArray2.printArray();
+//    	System.out.println();
+//    	
+//    	//Getters
+//    	int[] array1 = integerArray1.getArray();
+//    	boolean sorted2 = integerArray2.getSorted();
+//    	
+//    	//Setters
+//    	System.out.println("Arrays setting");
+//    	integerArray1.setArray(new int[] {1, 2, 4, 6, 6, 7, 9});
+//    	integerArray1.setSorted(true);
+//    	integerArray1.printArray();
+//    	integerArray2.setArray(new int[] {4, 8, 2, 4, 5, 2});
+//    	integerArray2.setSorted(false);
+//    	integerArray2.printArray();
+//    	System.out.println();
+//    	
+//    	//Set Element At
+//    	integerArray1.setElementAt(6, 3);
+//    	integerArray2.setElementAt(5, 4);
+//    	
+//    	//Get Element At
+//    	System.out.println("Get Element");
+//    	double Element1 = integerArray1.getElementAt(2);
+//    	double Element2 = integerArray2.getElementAt(3);
+//    	System.out.println();
+//    	
+//    	//Index of Element
+//    	System.out.println("Index Of Element");
+//    	int[] Index1 = integerArray1.indexOfElement(6);
+//    	int[] Index2 = integerArray2.indexOfElement(4);
+//    	int[] Index3 = integerArray1.indexOfElement(6, false);
+//    	System.out.println();
+//    	
+//    	//Insert and delete element 
+//    	System.out.println("Insert and Delete Element");
+//    	int[] array3 = integerArray1.insertElement(5, 4);
+//    	integerArray1.printArray();
+//    	int[] array4 = integerArray2.deleteElement(3);
+//    	integerArray2.printArray();
+//    	System.out.println();
+//    	
+//    	//Sorting the array
+//    	System.out.println("Sorting the array");
+//    	int[] array5 = integerArray1.insertionSort();
+//    	integerArray1.printArray();
+//    	int[] array6 = integerArray2.bubbleSort();
+//    	integerArray2.printArray();
+//    	System.out.println();
+
+////		STRING ARRAY OBJECT
+//    	System.out.println("STRING ARRAY");
+//    	System.out.println();
+//    	
+//    	//Object initialization
+//    	System.out.println("Arrays creation");
+//    	StringArray stringArray1 = new StringArray(new String[] {"apple", "banana", "strawberry", "pineapple", "grape", "blueberry", "coconut"});
+//    	stringArray1.printArray();
+//    	System.out.println();
+//    	
+//    	//Getters
+//    	String[] array1 = stringArray1.getArray();
+//    	
+//    	//Setters
+//    	System.out.println("Arrays setting");
+//    	stringArray1.setArray(new String[] {"banana", "grape", "apple", "coconut", "grape", "blueberry"});
+//    	stringArray1.printArray();
+//    	System.out.println();
+//    	
+//    	//Set Element At
+//    	stringArray1.setElementAt("banana", 3);
+//    	
+//    	//Get Element At
+//    	System.out.println("Get Element");
+//    	String Element1 = stringArray1.getElementAt(2);
+//    	System.out.println();
+//    	
+//    	//Index of Element
+//    	System.out.println("Index Of Element");
+//    	int[] Index1 = stringArray1.indexOfElement("banana");
+//    	System.out.println();
+//    	
+//    	//Insert and delete element 
+//    	System.out.println("Insert and Delete Element");
+//    	String[] array3 = stringArray1.insertElement("pineapple", 4);
+//    	stringArray1.printArray();
+//    	String[] array4 = stringArray1.deleteElement(3);
+//    	stringArray1.printArray();
+//    	System.out.println();    	
+    	
+////		BOOLEAN ARRAY OBJECT
+//    	System.out.println("BOOLEAN ARRAY");
+//    	System.out.println();
+//    	
+//    	//Object initialization
+//    	System.out.println("Arrays creation");
+//    	BooleanArray booleanArray1 = new BooleanArray(new boolean[] {true, false, false, true, false, true, true});
+//    	booleanArray1.printArray();
+//    	System.out.println();
+//    	
+//    	//Getters
+//    	boolean[] array1 = booleanArray1.getArray();
+//    	
+//    	//Setters
+//    	System.out.println("Arrays setting");
+//    	booleanArray1.setArray(new boolean[] {false, true, false, false, true, true});
+//    	booleanArray1.printArray();
+//    	System.out.println();
+//    	
+//    	//Set Element At
+//    	booleanArray1.setElementAt(true, 3);
+//    	
+//    	//Get Element At
+//    	System.out.println("Get Element");
+//    	boolean Element1 = booleanArray1.getElementAt(2);
+//    	System.out.println();
+//    	
+//    	//Index of Element
+//    	System.out.println("Index Of Element");
+//    	int[] Index1 = booleanArray1.indexOfElement(false);
+//    	System.out.println();
+//    	
+//    	//Insert and delete element 
+//    	System.out.println("Insert and Delete Element");
+//    	boolean[] array3 = booleanArray1.insertElement(false, 4);
+//    	booleanArray1.printArray();
+//    	boolean[] array4 = booleanArray1.deleteElement(3);
+//    	booleanArray1.printArray();
+//    	System.out.println();
     	
     	
 //    	DoubleArray array1 = new DoubleArray(new double[]{1, 4, 3, 5, 3});

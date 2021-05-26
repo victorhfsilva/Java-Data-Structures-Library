@@ -18,14 +18,14 @@ public class DoubleArrayMath extends DoubleArray{
 	}
 	//The array elements product
 	public double product() {
-		double product = 0;
+		double product = 1;
 		for (int i = 0; i < getArray().length; i++) {
 			product *= getArray()[i];
 		}
 		return product;
 	}
 	//Sum of the array elements with num
-	public double[] sum(double num) {
+	public double[] scalarSum(double num) {
 		double[] newArray = new double[getArray().length];
 		for (int i = 0; i < getArray().length; i++) {
 			newArray[i]= getArray()[i]+num;			
@@ -33,7 +33,7 @@ public class DoubleArrayMath extends DoubleArray{
 		return newArray;
 	}
 	//Subtraction of the array elements with num
-	public double[] subtraction(double num) {
+	public double[] scalarSubtraction(double num) {
 		double[] newArray = new double[getArray().length];
 		for (int i = 0; i < getArray().length; i++) {
 			newArray[i]= getArray()[i]-num;			
@@ -41,7 +41,7 @@ public class DoubleArrayMath extends DoubleArray{
 		return newArray;
 	}
 	//Multiplication of the array elements with num
-	public double[] multiplication(double num) {
+	public double[] scalarMultiplication(double num) {
 		double[] newArray = new double[getArray().length];
 		for (int i = 0; i < getArray().length; i++) {
 			newArray[i]= getArray()[i]*num;			
@@ -49,7 +49,7 @@ public class DoubleArrayMath extends DoubleArray{
 		return newArray;
 	}
 	//Division of the array elements with num
-	public double[] division(double num) {
+	public double[] scalarDivision(double num) {
 		double[] newArray = new double[getArray().length];
 		for (int i = 0; i < getArray().length; i++) {
 			newArray[i]= getArray()[i]/num;			
@@ -57,7 +57,7 @@ public class DoubleArrayMath extends DoubleArray{
 		return newArray;
 	}
 	//Remainder of the array elements with num
-	public double[] remainder(double num) {
+	public double[] scalarRemainder(double num) {
 		double[] newArray = new double[getArray().length];
 		for (int i = 0; i < getArray().length; i++) {
 			newArray[i]= getArray()[i]%num;			
@@ -65,4 +65,84 @@ public class DoubleArrayMath extends DoubleArray{
 		return newArray;
 	}
 	
+	//Matrix sum
+	double[] sum(double[] array){		
+		try { 
+			if (array.length != getArray().length) throw new Exception();
+		}
+		catch (Exception inputedMatrixWithDifferentDimmensions) {
+			System.out.println("The inputed matrix has different dimmensions.");
+			return getArray();
+		}
+		double[] newArray = new double[getArray().length];
+		for (int i = 0; i<getArray().length; i++){
+				newArray[i] = getArray()[i]+array[i];				
+			}
+		return newArray;
+	}
+	
+	//Matrix subtraction
+	double[] subtraction(double[] array){		
+		try { 
+			if (array.length != getArray().length) throw new Exception();
+		}
+		catch (Exception inputedMatrixWithDifferentDimmensions) {
+			System.out.println("The inputed matrix has different dimmensions.");
+			return getArray();
+		}
+		double[] newArray = new double[getArray().length];
+		for (int i = 0; i<getArray().length; i++){
+				newArray[i] = getArray()[i]-array[i];				
+			}
+		return newArray;
+	}
+	
+	//Matrix Multiplication
+	double[] elementMultiplication(double[] array){		
+		try { 
+			if (array.length != getArray().length) throw new Exception();
+		}
+		catch (Exception inputedMatrixWithDifferentDimmensions) {
+			System.out.println("The inputed matrix has different dimmensions.");
+			return getArray();
+		}
+		double[] newArray = new double[getArray().length];
+		for (int i = 0; i<getArray().length; i++){
+				newArray[i] = getArray()[i]*array[i];				
+			}
+		return newArray;
+	}
+	
+	//Matrix Multiplication
+	double[] elementDivision(double[] array){		
+		try { 
+			if (array.length != getArray().length) throw new Exception();
+		}
+		catch (Exception inputedMatrixWithDifferentDimmensions) {
+			System.out.println("The inputed matrix has different dimmensions.");
+			return getArray();
+		}
+		double[] newArray = new double[getArray().length];
+		for (int i = 0; i<getArray().length; i++){
+				newArray[i] = getArray()[i]/array[i];				
+			}
+		return newArray;
+	}
+	
+	//Matrix Multiplication
+	double[] elementRemainder(double[] array){		
+		try { 
+			if (array.length != getArray().length) throw new Exception();
+		}
+		catch (Exception inputedMatrixWithDifferentDimmensions) {
+			System.out.println("The inputed matrix has different dimmensions.");
+			return getArray();
+		}
+		double[] newArray = new double[getArray().length];
+		for (int i = 0; i<getArray().length; i++){
+				newArray[i] = getArray()[i]%array[i];				
+			}
+		return newArray;
+	}
+		
 }

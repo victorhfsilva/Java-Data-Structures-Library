@@ -433,7 +433,7 @@ public class IntegerMatrix extends ObjectArray {
     public int[][] insertLine(int[] elements, int line, boolean sortedLine){
     	    	
     	//check if the inserted number of elements is equal to the matrix number of rows
-    	try { if (elements.length == matrix[0].length) throw new Exception();}
+    	try { if (elements.length != matrix[0].length) throw new Exception();}
     	catch (Exception insertedNumbersOfRowsDifferent) {
     		System.out.println("The inserted number of rows is different from the matrix.");
     		return matrix;
@@ -471,6 +471,47 @@ public class IntegerMatrix extends ObjectArray {
         sorted[line]=sortedLine;
         for (int i = line+1; i< sorted.length; i++){
             sorted[i]=oldSorted[i-1];
+        }
+		
+		return matrix;
+    	
+    }
+
+    //Deleting a line
+    public int[][] deleteLine(int line){
+    	
+    	//check if the line is out bounds
+    	try { if (line>matrix.length || line<0 ) throw new ArrayIndexOutOfBoundsException();}
+	        catch (ArrayIndexOutOfBoundsException OutOfBoundsException) {
+	            System.out.println("Array Index is Out of Bounds");
+	            return matrix;
+	        }
+    	
+		//Save the old values and initialize the new matrix
+		int[][] oldMatrix = matrix;
+		boolean[] oldSorted = sorted;
+		
+		matrix = new int[oldMatrix.length-1][oldMatrix[0].length];
+    	sorted = new boolean[oldSorted.length-1];
+		
+		//Insert the line of elements
+    	for (int i = 0; i<line; i++){
+    		for (int row = 0; row < oldMatrix[0].length; row++){
+	            matrix[i][row]=oldMatrix[i][row];
+	        }
+    	}
+    	for (int i = line; i < matrix.length; i++){
+    		for (int row = 0; row < oldMatrix[0].length; row++){
+	            matrix[i][row]=oldMatrix[i+1][row];
+	        }
+	    }
+	    
+	    //Insert the sorted elements
+        for (int i = 0; i<line; i++){
+            sorted[i]=oldSorted[i];
+        }
+        for (int i = line; i< sorted.length; i++){
+            sorted[i]=oldSorted[i+1];
         }
 		
 		return matrix;
@@ -552,6 +593,71 @@ public class IntegerMatrix extends ObjectArray {
         return matrix;
     }   
     
+    //Deleting a row
+    public int[][] deleteRow(int row){
+    	
+    	//check if the line is out bounds
+    	try { if (row>matrix[0].length || row<0 ) throw new ArrayIndexOutOfBoundsException();}
+	        catch (ArrayIndexOutOfBoundsException OutOfBoundsException) {
+	            System.out.println("Array Index is Out of Bounds");
+	            return matrix;
+	        }
+    	
+		//Save the old values and initialize the new matrix
+		int[][] oldMatrix = matrix;
+		
+		matrix = new int[oldMatrix.length][oldMatrix[0].length-1];
+		
+		//Insert the line of elements
+		for (int j = 0; j < row; j++){
+			for (int line = 0; line<oldMatrix.length; line++){
+	            matrix[line][j]=oldMatrix[line][j];
+	        }
+    	}
+    	for (int j = row; j < matrix[0].length; j++){
+    		for (int line = 0; line < oldMatrix.length; line++){
+	            matrix[line][j]=oldMatrix[line][j+1];
+	        }
+	    }
+	    
+		return matrix;	
+    } 
+    
+    public int[][] deleteRow(int row, boolean sorted){
+    	
+    	//check if the line is out bounds
+    	try { if (row>matrix[0].length || row<0 ) throw new ArrayIndexOutOfBoundsException();}
+	        catch (ArrayIndexOutOfBoundsException OutOfBoundsException) {
+	            System.out.println("Array Index is Out of Bounds");
+	            return matrix;
+	        }
+    	
+		//Save the old values and initialize the new matrix
+		int[][] oldMatrix = matrix;
+		
+		matrix = new int[oldMatrix.length][oldMatrix[0].length-1];
+		
+		//Insert the line of elements
+		for (int j = 0; j < row; j++){
+			for (int line = 0; line<oldMatrix.length; line++){
+	            matrix[line][j]=oldMatrix[line][j];
+	        }
+    	}
+    	for (int j = row; j < matrix[0].length; j++){
+    		for (int line = 0; line < oldMatrix.length; line++){
+	            matrix[line][j]=oldMatrix[line][j+1];
+	        }
+	    }
+	    
+    	//case sorted is false, make sorted array false
+	    if (!sorted) {
+		    for (int i = 0; i < this.sorted.length; i++){
+		        this.sorted[i]=false;
+		    }
+	    }		
+		return matrix;	
+    } 
+
     //Sorting the Data
     
     //Insertion Sort

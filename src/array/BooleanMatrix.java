@@ -177,6 +177,36 @@ private boolean[][] matrix;
     	
     }
     
+    //Deleting a line
+    public boolean[][] deleteLine(int line){
+    	
+    	//check if the line is out bounds
+    	try { if (line>matrix.length || line<0 ) throw new ArrayIndexOutOfBoundsException();}
+	        catch (ArrayIndexOutOfBoundsException OutOfBoundsException) {
+	            System.out.println("Array Index is Out of Bounds");
+	            return matrix;
+	        }
+    	
+		//Save the old values and initialize the new matrix
+		boolean[][] oldMatrix = matrix;
+		
+		matrix = new boolean[oldMatrix.length-1][oldMatrix[0].length];
+		
+		//Insert the line of elements
+    	for (int i = 0; i<line; i++){
+    		for (int row = 0; row < oldMatrix[0].length; row++){
+	            matrix[i][row]=oldMatrix[i][row];
+	        }
+    	}
+    	for (int i = line; i < matrix.length; i++){
+    		for (int row = 0; row < oldMatrix[0].length; row++){
+	            matrix[i][row]=oldMatrix[i+1][row];
+	        }
+	    }
+	    		
+		return matrix;
+    	
+    }
         
     //Inserting a row
     public boolean[][] insertRow(boolean[] elements, int row){
@@ -211,6 +241,36 @@ private boolean[][] matrix;
 	    
         return matrix;
     }
+    
+    //Deleting a row
+    public boolean[][] deleteRow(int row){
+    	
+    	//check if the line is out bounds
+    	try { if (row>matrix[0].length || row<0 ) throw new ArrayIndexOutOfBoundsException();}
+	        catch (ArrayIndexOutOfBoundsException OutOfBoundsException) {
+	            System.out.println("Array Index is Out of Bounds");
+	            return matrix;
+	        }
+    	
+		//Save the old values and initialize the new matrix
+		boolean[][] oldMatrix = matrix;
+		
+		matrix = new boolean[oldMatrix.length][oldMatrix[0].length-1];
+		
+		//Insert the line of elements
+		for (int j = 0; j < row; j++){
+			for (int line = 0; line<oldMatrix.length; line++){
+	            matrix[line][j]=oldMatrix[line][j];
+	        }
+    	}
+    	for (int j = row; j < matrix[0].length; j++){
+    		for (int line = 0; line < oldMatrix.length; line++){
+	            matrix[line][j]=oldMatrix[line][j+1];
+	        }
+	    }
+	    
+		return matrix;	
+    } 
     
     //Print Matrix
     public void printMatrix(){

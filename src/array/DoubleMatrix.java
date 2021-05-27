@@ -400,20 +400,20 @@ public class DoubleMatrix extends ObjectArray{
 	        }
     	
 		//Save the old values and initialize the new matrix
-		double[][] oldArray = matrix;
+		double[][] oldMatrix = matrix;
 		boolean[] oldSorted = sorted;
 		
-		matrix = new double[oldArray.length+1][oldArray[0].length];
+		matrix = new double[oldMatrix.length+1][oldMatrix[0].length];
     	sorted = new boolean[oldSorted.length+1];
 		
 		//Insert the line of elements
-	    for (int row = 0; row < oldArray[0].length; row++) {
+	    for (int row = 0; row < oldMatrix[0].length; row++) {
     		for (int i = 0; i<line; i++){
-	            matrix[i][row]=oldArray[i][row];
+	            matrix[i][row]=oldMatrix[i][row];
 	        }
 	        matrix[line][row]=elements[row];
 	        for (int i = line+1; i < matrix.length; i++){
-	            matrix[i][row]=oldArray[i-1][row];
+	            matrix[i][row]=oldMatrix[i-1][row];
 	        }
 	    }
 	    
@@ -434,7 +434,7 @@ public class DoubleMatrix extends ObjectArray{
     public double[][] insertLine(double[] elements, int line, boolean sortedLine){
     	    	
     	//check if the inserted number of elements is equal to the matrix number of rows
-    	try { if (elements.length == matrix[0].length) throw new Exception();}
+    	try { if (elements.length != matrix[0].length) throw new Exception();}
     	catch (Exception insertedNumbersOfRowsDifferent) {
     		System.out.println("The inserted number of rows is different from the matrix.");
     		return matrix;
@@ -448,20 +448,20 @@ public class DoubleMatrix extends ObjectArray{
 	        }
     	
 		//Save the old values and initialize the new matrix
-		double[][] oldArray = matrix;
+		double[][] oldMatrix = matrix;
 		boolean[] oldSorted = sorted;
 		
-		matrix = new double[oldArray.length+1][oldArray[0].length];
+		matrix = new double[oldMatrix.length+1][oldMatrix[0].length];
     	sorted = new boolean[oldSorted.length+1];
 		
 		//Insert the line of elements
-	    for (int row = 0; row < oldArray[0].length; row++) {
+	    for (int row = 0; row < oldMatrix[0].length; row++) {
     		for (int i = 0; i<line; i++){
-	            matrix[i][row]=oldArray[i][row];
+	            matrix[i][row]=oldMatrix[i][row];
 	        }
 	        matrix[line][row]=elements[row];
 	        for (int i = line+1; i < matrix.length; i++){
-	            matrix[i][row]=oldArray[i-1][row];
+	            matrix[i][row]=oldMatrix[i-1][row];
 	        }
 	    }
 	    
@@ -472,6 +472,47 @@ public class DoubleMatrix extends ObjectArray{
         sorted[line]=sortedLine;
         for (int i = line+1; i< sorted.length; i++){
             sorted[i]=oldSorted[i-1];
+        }
+		
+		return matrix;
+    	
+    }
+
+    //Deleting a line
+    public double[][] deleteLine(int line){
+    	
+    	//check if the line is out bounds
+    	try { if (line>matrix.length || line<0 ) throw new ArrayIndexOutOfBoundsException();}
+	        catch (ArrayIndexOutOfBoundsException OutOfBoundsException) {
+	            System.out.println("Array Index is Out of Bounds");
+	            return matrix;
+	        }
+    	
+		//Save the old values and initialize the new matrix
+		double[][] oldMatrix = matrix;
+		boolean[] oldSorted = sorted;
+		
+		matrix = new double[oldMatrix.length-1][oldMatrix[0].length];
+    	sorted = new boolean[oldSorted.length-1];
+		
+		//Insert the line of elements
+    	for (int i = 0; i<line; i++){
+    		for (int row = 0; row < oldMatrix[0].length; row++){
+	            matrix[i][row]=oldMatrix[i][row];
+	        }
+    	}
+    	for (int i = line; i < matrix.length; i++){
+    		for (int row = 0; row < oldMatrix[0].length; row++){
+	            matrix[i][row]=oldMatrix[i+1][row];
+	        }
+	    }
+	    
+	    //Insert the sorted elements
+        for (int i = 0; i<line; i++){
+            sorted[i]=oldSorted[i];
+        }
+        for (int i = line; i< sorted.length; i++){
+            sorted[i]=oldSorted[i+1];
         }
 		
 		return matrix;
@@ -495,17 +536,17 @@ public class DoubleMatrix extends ObjectArray{
         }
 		
 		//Save the old values and initialize the new matrix
-        double[][] oldArray = matrix;
-        matrix = new double[oldArray.length][oldArray[0].length+1];
+        double[][] oldMatrix = matrix;
+        matrix = new double[oldMatrix.length][oldMatrix[0].length+1];
  
     	//insert the element and change the line which it was inserted
-	    for (int line = 0; line < oldArray.length; line++) {
+	    for (int line = 0; line < oldMatrix.length; line++) {
     		for (int i = 0; i<row; i++){
-	            matrix[line][i]=oldArray[line][i];
+	            matrix[line][i]=oldMatrix[line][i];
 	        }
 	        matrix[line][row]=elements[line];
 	        for (int i = row+1; i< matrix[line].length; i++){
-	            matrix[line][i]=oldArray[line][i-1];
+	            matrix[line][i]=oldMatrix[line][i-1];
 	        }
 	    }
 	    
@@ -529,17 +570,17 @@ public class DoubleMatrix extends ObjectArray{
         }
 		
 		//Save the old values and initialize the new matrix
-        double[][] oldArray = matrix;
-        matrix = new double[oldArray.length][oldArray[0].length+1];
+        double[][] oldMatrix = matrix;
+        matrix = new double[oldMatrix.length][oldMatrix[0].length+1];
  
     	//insert the element and change the line which it was inserted
-	    for (int line = 0; line < oldArray.length; line++) {
+	    for (int line = 0; line < oldMatrix.length; line++) {
     		for (int i = 0; i<row; i++){
-	            matrix[line][i]=oldArray[line][i];
+	            matrix[line][i]=oldMatrix[line][i];
 	        }
 	        matrix[line][row]=elements[line];
 	        for (int i = row+1; i< matrix[line].length; i++){
-	            matrix[line][i]=oldArray[line][i-1];
+	            matrix[line][i]=oldMatrix[line][i-1];
 	        }
 	    }
 	    
@@ -552,24 +593,92 @@ public class DoubleMatrix extends ObjectArray{
 	    
         return matrix;
     }   
+
+    //Deleting a row
+    public double[][] deleteRow(int row){
+    	
+    	//check if the line is out bounds
+    	try { if (row>matrix[0].length || row<0 ) throw new ArrayIndexOutOfBoundsException();}
+	        catch (ArrayIndexOutOfBoundsException OutOfBoundsException) {
+	            System.out.println("Array Index is Out of Bounds");
+	            return matrix;
+	        }
+    	
+		//Save the old values and initialize the new matrix
+		double[][] oldMatrix = matrix;
+		
+		matrix = new double[oldMatrix.length][oldMatrix[0].length-1];
+		
+		//Insert the line of elements
+		for (int j = 0; j < row; j++){
+			for (int line = 0; line<oldMatrix.length; line++){
+	            matrix[line][j]=oldMatrix[line][j];
+	        }
+    	}
+    	for (int j = row; j < matrix[0].length; j++){
+    		for (int line = 0; line < oldMatrix.length; line++){
+	            matrix[line][j]=oldMatrix[line][j+1];
+	        }
+	    }
+	    
+		return matrix;	
+    } 
+    
+    public double[][] deleteRow(int row, boolean sorted){
+    	
+    	//check if the line is out bounds
+    	try { if (row>matrix[0].length || row<0 ) throw new ArrayIndexOutOfBoundsException();}
+	        catch (ArrayIndexOutOfBoundsException OutOfBoundsException) {
+	            System.out.println("Array Index is Out of Bounds");
+	            return matrix;
+	        }
+    	
+		//Save the old values and initialize the new matrix
+		double[][] oldMatrix = matrix;
+		
+		matrix = new double[oldMatrix.length][oldMatrix[0].length-1];
+		
+		//Insert the line of elements
+		for (int j = 0; j < row; j++){
+			for (int line = 0; line<oldMatrix.length; line++){
+	            matrix[line][j]=oldMatrix[line][j];
+	        }
+    	}
+    	for (int j = row; j < matrix[0].length; j++){
+    		for (int line = 0; line < oldMatrix.length; line++){
+	            matrix[line][j]=oldMatrix[line][j+1];
+	        }
+	    }
+	    
+    	//case sorted is false, make sorted array false
+	    if (!sorted) {
+		    for (int i = 0; i < this.sorted.length; i++){
+		        this.sorted[i]=false;
+		    }
+	    }		
+		return matrix;	
+    } 
     
     //Sorting the Data
     
+    //NEED CORRECTION
     //Insertion Sort
     //Big-O O(m*n²)
     public double[][] insertionSort(int line){
-        double temp;
         for (int i = 1; i<matrix[line].length; i++){
-            for (int j=i; j>0; j--){
-                if (matrix[line][i]<matrix[line][j-1]){
+        	double temp = matrix[line][i];
+        	int j = i-1;
+        	while (j>=0 && temp < matrix[line][j]){
                     for (int k = 0; k < matrix.length; k++) {
-                    	temp =  matrix[k][j-1];
-                        matrix[k][j-1] = matrix[k][j];
-                        matrix[k][j] = temp;
-					}
+                        matrix[k][j+1] = matrix[k][j];
+                        j--;
+                    }
                 }
+        	for (int k = 0; k < matrix.length; k++) {
+                matrix[k][j+1] = temp;
+			}
             }
-        }
+        
         sorted[line] = true;
     	for (int i = 0; i < matrix.length; i++) {
     		if (i != line) {
@@ -578,7 +687,8 @@ public class DoubleMatrix extends ObjectArray{
 		}
         return matrix;
     }
-
+    
+    //NEED CORRECTION
     //Bubble Sort
     //Big-O O(m*n²)
     public double[][] bubbleSort(int line){

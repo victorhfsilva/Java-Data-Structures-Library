@@ -268,20 +268,39 @@ public class DoubleArray extends ObjectArray{
         return array;
     }
 
-    //Sorting the Data
+//    //Sorting the Data
+//    //Insertion Sort
+//    //Big-O O(n²)
+//    public double[] insertionSort(){
+//        double temp;
+//        for (int i = 1; i<array.length; i++){
+//            for (int j=i; j>0; j--){
+//                if (array[i]<array[j-1]){
+//                    temp =  array[j-1];
+//                    array[j-1] = array[j];
+//                    array[j] = temp;
+//                }
+//            }
+//        }
+//        sorted = true;
+//        return array;
+//    }
+    
     //Insertion Sort
-    //Big-O O(n²)
+    //Big-O O(m*n²)
     public double[] insertionSort(){
-        double temp;
         for (int i = 1; i<array.length; i++){
-            for (int j=i; j>0; j--){
-                if (array[i]<array[j-1]){
-                    temp =  array[j-1];
-                    array[j-1] = array[j];
-                    array[j] = temp;
+        	double temp = array[i];
+        	int j = i-1;
+        	while (j>=0 && array[j] > temp){
+                    
+                    array[j+1] = array[j];
+                    
+                    j--;
+                    
                 }
-            }
-        }
+        	array[j+1] = temp;
+            }        
         sorted = true;
         return array;
     }

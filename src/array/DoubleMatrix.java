@@ -661,31 +661,36 @@ public class DoubleMatrix extends ObjectArray{
     
     //Sorting the Data
     
-    //NEED CORRECTION
     //Insertion Sort
-    //Big-O O(m*n²)
     public double[][] insertionSort(int line){
-        for (int i = 1; i<matrix[line].length; i++){
-        	double temp = matrix[line][i];
-        	int j = i-1;
-        	while (j>=0 && temp < matrix[line][j]){
-                    for (int k = 0; k < matrix.length; k++) {
-                        matrix[k][j+1] = matrix[k][j];
-                        j--;
-                    }
-                }
-        	for (int k = 0; k < matrix.length; k++) {
-                matrix[k][j+1] = temp;
+    	for (int j =1; j<matrix[line].length; j++) {
+    		double[] temp = new double[matrix.length];
+    		for (int i = 0; i < matrix.length; i++) {
+    			temp[i] = matrix[i][j];
 			}
-            }
-        
-        sorted[line] = true;
-    	for (int i = 0; i < matrix.length; i++) {
-    		if (i != line) {
-    			sorted[i] = false;
+    		int k = j - 1;
+    		while (k>=0 && matrix[line][k] > temp[line]) {
+    			for (int i = 0; i < matrix.length; i++) {
+    				matrix[i][k+1]=matrix[i][k];
+				}   		
+    			k--;
     		}
+    		for (int i = 0; i < matrix.length; i++) {
+    			matrix[i][k+1] = temp[i];
+    		}
+    		
+    	}
+    	
+    	for (int k = 0; k < line; k++) {
+    		sorted[k] = false;  		
 		}
-        return matrix;
+		sorted[line] = true;
+		for (int k = line+1; k < matrix.length; k++) {
+			sorted[k] = false;  		
+		}
+    	
+		return matrix;
+    	
     }
     
     //NEED CORRECTION

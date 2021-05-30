@@ -85,17 +85,11 @@ public class Main {
     	double[][] matrix6 = doubleMatrix1.insertionSort(0);
     	doubleMatrix1.printMatrix();
     	System.out.println();
-//    	
-//    	double[][] matrix7 = doubleMatrix2.bubbleSort(0);
-//    	doubleMatrix2.printMatrix();
-//    	System.out.println();
-
-    	double[] array1 = matrix5[0];
-    	DoubleArray Array1 = new DoubleArray(array1);
-    	Array1.printArray();
-    	Array1.bubbleSort();
-    	Array1.printArray();
     	
+    	double[][] matrix7 = doubleMatrix2.bubbleSort(0);
+    	doubleMatrix2.printMatrix();
+    	System.out.println();
+
 //    	//Double Math
 //    	System.out.println("Summation and Product");
 //    	double summation = doubleMatrix1.summation();

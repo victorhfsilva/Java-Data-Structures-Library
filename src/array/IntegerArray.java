@@ -268,32 +268,29 @@ public class IntegerArray extends ObjectArray{
 
     //Sorting the Data
     //Insertion Sort
-    //Big-O O(n²)
     public int[] insertionSort(){
-        int temp;
         for (int i = 1; i<array.length; i++){
-            for (int j=i; j>0; j--){
-                if (array[i]<array[j-1]){
-                    temp =  array[j-1];
-                    array[j-1] = array[j];
-                    array[j] = temp;
+        	int temp = array[i];
+        	int j = i-1;
+        	while (j>=0 && array[j] > temp){                    
+                    array[j+1] = array[j];                    
+                    j--;                    
                 }
-            }
-        }
+        	array[j+1] = temp;
+            }        
         sorted = true;
         return array;
     }
 
     //Bubble Sort
-    //Big-O O(n²)
     public int[] bubbleSort(){
         int temp;
-        for (int ult = array.length-1; ult > 0; ult--){
-            for (int i = 0; i<ult; i++){
-                if (array[i]>array[i+1]){
-                    temp = array[i];
-                    array[i] = array[i+1];
-                    array[i+1]=temp;
+        for (int i = 0; i < array.length-1; i++){
+            for (int j = 0; j<array.length-i-1; j++){
+                if (array[j]>array[j+1]){
+                    temp = array[j];
+                    array[j] = array[j+1];
+                    array[j+1]=temp;
                 }
             }
         }

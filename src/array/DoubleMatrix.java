@@ -677,45 +677,40 @@ public class DoubleMatrix extends ObjectArray{
     		}
     		for (int i = 0; i < matrix.length; i++) {
     			matrix[i][k+1] = temp[i];
-    		}
-    		
-    	}
-    	
+    		}    		
+    	}    	
     	for (int k = 0; k < line; k++) {
     		sorted[k] = false;  		
 		}
 		sorted[line] = true;
 		for (int k = line+1; k < matrix.length; k++) {
 			sorted[k] = false;  		
-		}
-    	
-		return matrix;
-    	
+		}    	
+		return matrix;    	
     }
-    
-    //NEED CORRECTION
+        
     //Bubble Sort
-    //Big-O O(m*n²)
     public double[][] bubbleSort(int line){
-        double temp;
-        for (int ult = matrix.length-1; ult > 0; ult--){
-            for (int row = 0; row<ult; row++){
-                if (matrix[line][row]>matrix[line][row+1]){
-                    for (int i = 0; i < matrix.length; i++) {
-                    	temp = matrix[i][row];
-                        matrix[i][row] = matrix[i][row+1];
-                        matrix[i][row+1]=temp;
-					}
-                }
-            }
-        }
-        sorted[line] = true;
-        for (int i = 0; i < matrix.length; i++) {
-    		if (i != line) {
-    			sorted[i] = false;
+    	double[] temp = new double[matrix.length];
+    	for (int k = 0; k < matrix[line].length-1; k++) {
+    		for (int j = 0; j < matrix[line].length-k-1; j++) {
+    			if (matrix[line][j]>matrix[line][j+1]) {
+    				for (int i = 0; i < matrix.length; i++) {
+    					temp[i] = matrix[i][j];
+    					matrix[i][j]=matrix[i][j+1];
+    					matrix[i][j+1]=temp[i];
+    				}
+    			}
     		}
+    	}    	
+    	for (int k = 0; k < line; k++) {
+    		sorted[k] = false;  		
 		}
-        return matrix;
+		sorted[line] = true;
+		for (int k = line+1; k < matrix.length; k++) {
+			sorted[k] = false;  		
+		}    	
+    	return matrix;
     }
     
     //Print Matrix

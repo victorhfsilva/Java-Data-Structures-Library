@@ -661,54 +661,59 @@ public class IntegerMatrix extends ObjectArray {
     //Sorting the Data
     
     //Insertion Sort
-    //Big-O O(m*n²)
     public int[][] insertionSort(int line){
-        int temp;
-        for (int i = 1; i<matrix[line].length; i++){
-            for (int j=i; j>0; j--){
-                if (matrix[line][i]<matrix[line][j-1]){
-                    for (int k = 0; k < matrix.length; k++) {
-                    	temp =  matrix[k][j-1];
-                        matrix[k][j-1] = matrix[k][j];
-                        matrix[k][j] = temp;
-					}
-                }
-            }
-        }
-        sorted[line] = true;
-    	for (int i = 0; i < matrix.length; i++) {
-    		if (i != line) {
-    			sorted[i] = false;
+    	for (int j =1; j<matrix[line].length; j++) {
+    		int[] temp = new int[matrix.length];
+    		for (int i = 0; i < matrix.length; i++) {
+    			temp[i] = matrix[i][j];
+			}
+    		int k = j - 1;
+    		while (k>=0 && matrix[line][k] > temp[line]) {
+    			for (int i = 0; i < matrix.length; i++) {
+    				matrix[i][k+1]=matrix[i][k];
+				}   		
+    			k--;
     		}
+    		for (int i = 0; i < matrix.length; i++) {
+    			matrix[i][k+1] = temp[i];
+    		}
+    		
+    	}
+    	for (int k = 0; k < line; k++) {
+    		sorted[k] = false;  		
 		}
-        return matrix;
+		sorted[line] = true;
+		for (int k = line+1; k < matrix.length; k++) {
+			sorted[k] = false;  		
+		}    	
+		return matrix;    	
     }
 
     //Bubble Sort
-    //Big-O O(m*n²)
     public int[][] bubbleSort(int line){
-        int temp;
-        for (int ult = matrix.length-1; ult > 0; ult--){
-            for (int row = 0; row<ult; row++){
-                if (matrix[line][row]>matrix[line][row+1]){
-                    for (int i = 0; i < matrix.length; i++) {
-                    	temp = matrix[i][row];
-                        matrix[i][row] = matrix[i][row+1];
-                        matrix[i][row+1]=temp;
-					}
-                }
-            }
-        }
-        sorted[line] = true;
-        for (int i = 0; i < matrix.length; i++) {
-    		if (i != line) {
-    			sorted[i] = false;
+    	int[] temp = new int[matrix.length];
+    	for (int k = 0; k < matrix[line].length-1; k++) {
+    		for (int j = 0; j < matrix[line].length-k-1; j++) {
+    			if (matrix[line][j]>matrix[line][j+1]) {
+    				for (int i = 0; i < matrix.length; i++) {
+    					temp[i] = matrix[i][j];
+    					matrix[i][j]=matrix[i][j+1];
+    					matrix[i][j+1]=temp[i];
+    				}
+    			}
     		}
+    	}    	
+    	for (int k = 0; k < line; k++) {
+    		sorted[k] = false;  		
 		}
-        return matrix;
+		sorted[line] = true;
+		for (int k = line+1; k < matrix.length; k++) {
+			sorted[k] = false;  		
+		}    	
+    	return matrix;
     }
     
-    //Print MAtrix
+    //Print Matrix
     public void printMatrix(){
     	for (int line = 0; line<matrix.length;line++){
            	for (int row = 0; row < matrix[line].length; row++) {

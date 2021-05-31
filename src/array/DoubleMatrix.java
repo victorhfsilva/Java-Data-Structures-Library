@@ -32,11 +32,6 @@ public class DoubleMatrix extends ObjectArray{
 	                }
 	            }
 		}		
-//		//Print the length array after sorting
-//        for (int line = 0; line<length.length; line++){
-//            System.out.print(length[line]+"\t");
-//        }
-//        System.out.println();
 	       
     	//check if each line of the array has the same number of rows
 		try {
@@ -81,11 +76,6 @@ public class DoubleMatrix extends ObjectArray{
 	                }
 	            }
 		}		
-//		//Print the length array after sorting
-//        for (int line = 0; line<length.length; line++){
-//            System.out.print(length[line]+"\t");
-//        }
-//        System.out.println();
 	       
     	//check if each line of the array has the same number of rows
 		try {
@@ -107,7 +97,10 @@ public class DoubleMatrix extends ObjectArray{
 		}
         
         //Check if sorted has the same length as array
-        try { if (sorted.length == matrix.length) throw new Exception(); }
+        try { 
+        		if (sorted.length != matrix.length) throw new Exception();
+        		this.sorted = sorted;
+    		}
         catch (Exception sortedNumberOfRowsDifferent) {
         	System.out.println("The number of rows is different for each array.");
         	for (int line = 0; line < matrix.length; line++) {

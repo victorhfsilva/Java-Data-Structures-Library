@@ -3,172 +3,169 @@ public class Main {
 	
     public static void main(String[] args)  throws CloneNotSupportedException {
         
-//    	//	DOUBLE MATRIX OBJECT
-    	
-    	System.out.println("DOUBLE MATRIX");
-    	System.out.println();
-    	
-    	//Object initialization
-    	System.out.println("Arrays creation");
-    	DoubleMatrixMath doubleMatrix1 = new DoubleMatrixMath(new double[][] {{1.3, 3.3, 2.5, 2.7, 4.1, 5.7, 6.8},{0.3, 2.3, 1.5, 3.7, 2.1, 2.7, 3.8}});
-    	doubleMatrix1.printMatrix();
-    	DoubleMatrixMath doubleMatrix2 = new DoubleMatrixMath(new double[][] {{1.2, 3.5, 4.7, 5.8, 7.9, 9.2},
-												{1.2, 3.5, 4.7, 5.8, 7.9, 9.2}}, new boolean[] {true, false});
-    	
-    	doubleMatrix2.printMatrix();
-    	System.out.println();
-    	
-    	//Getters
-    	double[][] matrix1 = doubleMatrix1.getMatrix();
-    	boolean[] sorted1 = doubleMatrix2.getSorted();
-    	
-    	//Setters
-    	System.out.println("Arrays setting");
-    	doubleMatrix1.setMatrix(new double[][] {{1.6, 2.1, 4.3, 6.2, 6.7, 7.4, 9.6},{1.2, 7.2, 5.0, 6.1, 6.7, 3.4, 5.6}});
-    	doubleMatrix1.setSorted(new boolean[] {true,false});
-    	doubleMatrix1.printMatrix();
-    	doubleMatrix2.setMatrix(new double[][] {{4.5, 8.1, 2.2, 4.5, 5.6, 2.1},{4.2, 5.1, 6.2, 7.5, 8.6, 1.1}});
-    	doubleMatrix2.setSorted(new boolean[] {false,false});
-    	doubleMatrix2.printMatrix();
-    	System.out.println();
-    	
-    	//Set Element At
-    	doubleMatrix1.setElementAt(6.7, 1, 3);
-    	doubleMatrix2.setElementAt(5.2, 0, 4);
-    	
-    	//Get Element At
-    	System.out.println("Get Element");
-    	double Element1 = doubleMatrix1.getElementAt(1,5);
-    	double Element2 = doubleMatrix2.getElementAt(0,3);
-    	boolean sorted2 = doubleMatrix1.getSortedAt(0);
-    	boolean sorted3 = doubleMatrix1.getSortedAt(1);
-    	System.out.println();
-    	
-    	//Index of Element
-    	System.out.println("Index Of Element");
-    	int[] Index1 = doubleMatrix1.indexOfElement(6.7,0);
-    	int[][] Index2 = doubleMatrix2.indexOfElement(4.5);
-    	int[] Index3 = doubleMatrix1.indexOfElement(6.7,0, false);
-    	System.out.println();
-    	
-    	//Insert and delete element 
-    	System.out.println("Insert and Delete Element");
-    	double[][] matrix2 = doubleMatrix1.insertLine(new double[] {1.6, 2.1, 2.3, 3.2, 2.7, 1.4, 2.6}, 1);
-    	doubleMatrix1.printMatrix();
-    	System.out.println();
-    	
-    	double[][] matrix3 = doubleMatrix1.insertLine(new double[] {1.6, 2.1, 4.3, 6.2, 6.7, 7.4, 9.6}, 3, true);
-    	doubleMatrix1.printMatrix();
-    	System.out.println();
-    	
-    	double[][] matrix4 = doubleMatrix1.insertRow(new double[] {1.6, 2.1, 2.3, 3.2}, 5);
-    	doubleMatrix1.printMatrix();
-    	System.out.println();
-    	
-    	double[][] matrix5 = doubleMatrix1.insertRow(new double[] {1.6, 2.1, 2.3, 3.2}, 5, false);
-    	doubleMatrix1.printMatrix();
-    	System.out.println();
-    	
-    	doubleMatrix1.deleteLine(0);
-    	doubleMatrix1.printMatrix();    	
-    	System.out.println();
-    	
-    	doubleMatrix1.deleteRow(0);
-    	doubleMatrix1.printMatrix();    	
-    	System.out.println();
-    	
-    	doubleMatrix1.deleteRow(7, false);
-    	doubleMatrix1.printMatrix();    	
-    	System.out.println();
-   	
-    	//Sorting the array
-    	System.out.println("Sorting the array");
-    	double[][] matrix6 = doubleMatrix1.insertionSort(0);
-    	doubleMatrix1.printMatrix();
-    	System.out.println();
-    	
-    	double[][] matrix7 = doubleMatrix2.bubbleSort(0);
-    	doubleMatrix2.printMatrix();
-    	System.out.println();
-    	
-    	//Double Matrix Math
-    	//Transposition
-    	System.out.println("Transpose Matrix");
-    	double[][] transpose = doubleMatrix1.transpose();
-    	DoubleMatrix transposeMatrix = new DoubleMatrix(transpose);
-    	transposeMatrix.printMatrix();
-    	System.out.println();
-    	
-    	//Matrix Sum
-    	System.out.println("Matrix Sum");
-    	double[][] sum = doubleMatrix2.sum(new double[][] {{1.3, 1.2, 3.2, 4.1, 3.1, 7.2},
-    														{2.3, 4.2, 5.2, 1.1, 3.7, 5.2}});
-    	DoubleMatrix matrixSum = new DoubleMatrix(sum);
-    	matrixSum.printMatrix();
-    	System.out.println();    	
-    	
-    	//Matrix Subtraction
-    	System.out.println("Matrix Subtraction");
-    	double[][] subtraction = doubleMatrix2.subtraction(new double[][] {{1.3, 1.2, 3.2, 4.1, 3.1, 7.2},
-    																		{2.3, 4.2, 5.2, 1.1, 3.7, 5.2}});
-    	DoubleMatrix matrixSubtraction = new DoubleMatrix(subtraction);
-    	matrixSubtraction.printMatrix();
-    	System.out.println();
-    	
-    	//Matrix Element Wise Multiplication
-    	System.out.println("Matrix Element Wise Multiplication");
-    	double[][] elementMultiplication = doubleMatrix2.elementMultiplication(new double[][] {{1.3, 1.2, 3.2, 4.1, 3.1, 7.2},
-    																			{2.3, 4.2, 5.2, 1.1, 3.7, 5.2}});
-    	DoubleMatrix matrixElementMultiplication = new DoubleMatrix(elementMultiplication);
-    	matrixElementMultiplication.printMatrix();
-    	System.out.println();
-    	
-      //Matrix Element Wise Division
-    	System.out.println("Matrix Element Wise Division");
-    	double[][] elementDivision = doubleMatrix2.elementDivision(new double[][] {{1.3, 1.2, 3.2, 4.1, 3.1, 7.2},
-    																			{2.3, 4.2, 5.2, 1.1, 3.7, 5.2}});
-    	DoubleMatrix matrixElementDivision = new DoubleMatrix(elementDivision);
-    	matrixElementDivision.printMatrix();
-    	System.out.println();
-    	
-    	//Matrix Element Wise Remainder
-    	System.out.println("Matrix Element Wise Remainder");
-    	double[][] elementRemainder = doubleMatrix2.elementRemainder(new double[][] {{1.3, 1.2, 3.2, 4.1, 3.1, 7.2},
-    																			{2.3, 4.2, 5.2, 1.1, 3.7, 5.2}});
-    	DoubleMatrix matrixElementRemainder = new DoubleMatrix(elementRemainder);
-    	matrixElementRemainder.printMatrix();
-    	System.out.println();
-    	
-    	//Matrix Element Wise Remainder
-    	System.out.println("Matrix Multiplication");
-    	doubleMatrix2.printMatrix();
-    	System.out.println();
-    	double[][] multiplication = doubleMatrix2.multiplication(new double[][] {{1.3, 1.2}, {3.2, 4.1}, {3.1, 7.2},
-    																			{2.3, 4.2}, {5.2, 1.1}, {3.7, 5.2}});
-    	DoubleMatrix Multiplication= new DoubleMatrix(multiplication);
-    	Multiplication.printMatrix();
-    	System.out.println();
-    	
-    	//Matrix Scalar Sum
-    	System.out.println("Matrix Scalar Sum");
-    	doubleMatrix2.printMatrix();
-    	System.out.println();
-    	double[][] scalarSum = doubleMatrix2.scalarSum(1.14);
-    	DoubleMatrix ScalarSum= new DoubleMatrix(scalarSum);
-    	ScalarSum.printMatrix();
-    	System.out.println();
-    	
-    	//Matrix Scalar Subtraction
-    	System.out.println("Matrix Scalar Subtraction");
-    	double[][] scalarSubtraction = doubleMatrix2.scalarSubtraction(1.14);
-    	DoubleMatrix ScalarSubtraction = new DoubleMatrix(scalarSubtraction);
-    	ScalarSubtraction.printMatrix();
-    	System.out.println(); 	
-    	
-    	
-//      //	INTEGER MATRIX OBJECT
-    	
+//    	//	DOUBLE MATRIX OBJECT   	
 //    	System.out.println("DOUBLE MATRIX");
+//    	System.out.println();
+//    	
+//    	//Object initialization
+//    	System.out.println("Arrays creation");
+//    	DoubleMatrixMath doubleMatrix1 = new DoubleMatrixMath(new double[][] {{1.3, 3.3, 2.5, 2.7, 4.1, 5.7, 6.8},{0.3, 2.3, 1.5, 3.7, 2.1, 2.7, 3.8}});
+//    	doubleMatrix1.printMatrix();
+//    	DoubleMatrixMath doubleMatrix2 = new DoubleMatrixMath(new double[][] {{1.2, 3.5, 4.7, 5.8, 7.9, 9.2},{1.2, 3.5, 4.7, 5.8, 7.9, 9.2}}, new boolean[] {true, false});
+//    	
+//    	doubleMatrix2.printMatrix();
+//    	System.out.println();
+//    	
+//    	//Getters
+//    	double[][] matrix1 = doubleMatrix1.getMatrix();
+//    	boolean[] sorted1 = doubleMatrix2.getSorted();
+//    	
+//    	//Setters
+//    	System.out.println("Arrays setting");
+//    	doubleMatrix1.setMatrix(new double[][] {{1.6, 2.1, 4.3, 6.2, 6.7, 7.4, 9.6},{1.2, 7.2, 5.0, 6.1, 6.7, 3.4, 5.6}});
+//    	doubleMatrix1.setSorted(new boolean[] {true,false});
+//    	doubleMatrix1.printMatrix();
+//    	doubleMatrix2.setMatrix(new double[][] {{4.5, 8.1, 2.2, 4.5, 5.6, 2.1},{4.2, 5.1, 6.2, 7.5, 8.6, 1.1}});
+//    	doubleMatrix2.setSorted(new boolean[] {false,false});
+//    	doubleMatrix2.printMatrix();
+//    	System.out.println();
+//    	
+//    	//Set Element At
+//    	doubleMatrix1.setElementAt(6.7, 1, 3);
+//    	doubleMatrix2.setElementAt(5.2, 0, 4);
+//    	
+//    	//Get Element At
+//    	System.out.println("Get Element");
+//    	double Element1 = doubleMatrix1.getElementAt(1,5);
+//    	double Element2 = doubleMatrix2.getElementAt(0,3);
+//    	boolean sorted2 = doubleMatrix1.getSortedAt(0);
+//    	boolean sorted3 = doubleMatrix1.getSortedAt(1);
+//    	System.out.println();
+//    	
+//    	//Index of Element
+//    	System.out.println("Index Of Element");
+//    	int[] Index1 = doubleMatrix1.indexOfElement(6.7,0);
+//    	int[][] Index2 = doubleMatrix2.indexOfElement(4.5);
+//    	int[] Index3 = doubleMatrix1.indexOfElement(6.7,0, false);
+//    	System.out.println();
+//    	
+//    	//Insert and delete element 
+//    	System.out.println("Insert and Delete Element");
+//    	double[][] matrix2 = doubleMatrix1.insertLine(new double[] {1.6, 2.1, 2.3, 3.2, 2.7, 1.4, 2.6}, 1);
+//    	doubleMatrix1.printMatrix();
+//    	System.out.println();
+//    	
+//    	double[][] matrix3 = doubleMatrix1.insertLine(new double[] {1.6, 2.1, 4.3, 6.2, 6.7, 7.4, 9.6}, 3, true);
+//    	doubleMatrix1.printMatrix();
+//    	System.out.println();
+//    	
+//    	double[][] matrix4 = doubleMatrix1.insertRow(new double[] {1.6, 2.1, 2.3, 3.2}, 5);
+//    	doubleMatrix1.printMatrix();
+//    	System.out.println();
+//    	
+//    	double[][] matrix5 = doubleMatrix1.insertRow(new double[] {1.6, 2.1, 2.3, 3.2}, 5, false);
+//    	doubleMatrix1.printMatrix();
+//    	System.out.println();
+//    	
+//    	doubleMatrix1.deleteLine(0);
+//    	doubleMatrix1.printMatrix();    	
+//    	System.out.println();
+//    	
+//    	doubleMatrix1.deleteRow(0);
+//    	doubleMatrix1.printMatrix();    	
+//    	System.out.println();
+//    	
+//    	doubleMatrix1.deleteRow(7, false);
+//    	doubleMatrix1.printMatrix();    	
+//    	System.out.println();
+//   	
+//    	//Sorting the array
+//    	System.out.println("Sorting the array");
+//    	double[][] matrix6 = doubleMatrix1.insertionSort(0);
+//    	doubleMatrix1.printMatrix();
+//    	System.out.println();
+//    	
+//    	double[][] matrix7 = doubleMatrix2.bubbleSort(0);
+//    	doubleMatrix2.printMatrix();
+//    	System.out.println();
+//    	
+//    	//Double Matrix Math
+//    	//Transposition
+//    	System.out.println("Transpose Matrix");
+//    	double[][] transpose = doubleMatrix1.transpose();
+//    	DoubleMatrix transposeMatrix = new DoubleMatrix(transpose);
+//    	transposeMatrix.printMatrix();
+//    	System.out.println();
+//    	
+//    	//Matrix Sum
+//    	System.out.println("Matrix Sum");
+//    	double[][] sum = doubleMatrix2.sum(new double[][] {{1.3, 1.2, 3.2, 4.1, 3.1, 7.2},
+//    														{2.3, 4.2, 5.2, 1.1, 3.7, 5.2}});
+//    	DoubleMatrix matrixSum = new DoubleMatrix(sum);
+//    	matrixSum.printMatrix();
+//    	System.out.println();    	
+//    	
+//    	//Matrix Subtraction
+//    	System.out.println("Matrix Subtraction");
+//    	double[][] subtraction = doubleMatrix2.subtraction(new double[][] {{1.3, 1.2, 3.2, 4.1, 3.1, 7.2},
+//    																		{2.3, 4.2, 5.2, 1.1, 3.7, 5.2}});
+//    	DoubleMatrix matrixSubtraction = new DoubleMatrix(subtraction);
+//    	matrixSubtraction.printMatrix();
+//    	System.out.println();
+//    	
+//    	//Matrix Element Wise Multiplication
+//    	System.out.println("Matrix Element Wise Multiplication");
+//    	double[][] elementMultiplication = doubleMatrix2.elementMultiplication(new double[][] {{1.3, 1.2, 3.2, 4.1, 3.1, 7.2},
+//    																			{2.3, 4.2, 5.2, 1.1, 3.7, 5.2}});
+//    	DoubleMatrix matrixElementMultiplication = new DoubleMatrix(elementMultiplication);
+//    	matrixElementMultiplication.printMatrix();
+//    	System.out.println();
+//    	
+//    	//Matrix Element Wise Division
+//    	System.out.println("Matrix Element Wise Division");
+//    	double[][] elementDivision = doubleMatrix2.elementDivision(new double[][] {{1.3, 1.2, 3.2, 4.1, 3.1, 7.2},
+//    																			{2.3, 4.2, 5.2, 1.1, 3.7, 5.2}});
+//    	DoubleMatrix matrixElementDivision = new DoubleMatrix(elementDivision);
+//    	matrixElementDivision.printMatrix();
+//    	System.out.println();
+//    	
+//    	//Matrix Element Wise Remainder
+//    	System.out.println("Matrix Element Wise Remainder");
+//    	double[][] elementRemainder = doubleMatrix2.elementRemainder(new double[][] {{1.3, 1.2, 3.2, 4.1, 3.1, 7.2},
+//    																			{2.3, 4.2, 5.2, 1.1, 3.7, 5.2}});
+//    	DoubleMatrix matrixElementRemainder = new DoubleMatrix(elementRemainder);
+//    	matrixElementRemainder.printMatrix();
+//    	System.out.println();
+//    	
+//    	//Matrix Element Wise Remainder
+//    	System.out.println("Matrix Multiplication");
+//    	doubleMatrix2.printMatrix();
+//    	System.out.println();
+//    	double[][] multiplication = doubleMatrix2.multiplication(new double[][] {{1.3, 1.2}, {3.2, 4.1}, {3.1, 7.2},
+//    																			{2.3, 4.2}, {5.2, 1.1}, {3.7, 5.2}});
+//    	DoubleMatrix Multiplication= new DoubleMatrix(multiplication);
+//    	Multiplication.printMatrix();
+//    	System.out.println();
+//    	
+//    	//Matrix Scalar Sum
+//    	System.out.println("Matrix Scalar Sum");
+//    	doubleMatrix2.printMatrix();
+//    	System.out.println();
+//    	double[][] scalarSum = doubleMatrix2.scalarSum(1.14);
+//    	DoubleMatrix ScalarSum= new DoubleMatrix(scalarSum);
+//    	ScalarSum.printMatrix();
+//    	System.out.println();
+//    	
+//    	//Matrix Scalar Subtraction
+//    	System.out.println("Matrix Scalar Subtraction");
+//    	double[][] scalarSubtraction = doubleMatrix2.scalarSubtraction(1.14);
+//    	DoubleMatrix ScalarSubtraction = new DoubleMatrix(scalarSubtraction);
+//    	ScalarSubtraction.printMatrix();
+//    	System.out.println(); 	
+    	
+    	
+//      //	INTEGER MATRIX OBJECT    	
+//    	System.out.println("INTEGER MATRIX");
 //    	System.out.println();
 //    	
 //    	//Object initialization
@@ -201,8 +198,8 @@ public class Main {
 //    	
 //    	//Get Element At
 //    	System.out.println("Get Element");
-//    	double Element1 = integerMatrix1.getElementAt(1,5);
-//    	double Element2 = integerMatrix2.getElementAt(0,3);
+//    	int Element1 = integerMatrix1.getElementAt(1,5);
+//    	int Element2 = integerMatrix2.getElementAt(0,3);
 //    	boolean sorted2 = integerMatrix1.getSortedAt(0);
 //    	boolean sorted3 = integerMatrix1.getSortedAt(1);
 //    	System.out.println();
@@ -286,7 +283,7 @@ public class Main {
 //    	matrixElementMultiplication.printMatrix();
 //    	System.out.println();
 //    	
-//      //Matrix Element Wise Division
+//    	//Matrix Element Wise Division
 //    	System.out.println("Matrix Element Wise Division");
 //    	int[][] elementDivision = integerMatrix2.elementDivision(new int[][] {{1, 1, 3, 4, 3, 7},
 //    																			{2, 4, 5, 1, 3, 5}});
@@ -329,8 +326,7 @@ public class Main {
 //    	System.out.println(); 
     	
     	
-//      //	STRING MATRIX OBJECT
-    	
+//    	//	STRING MATRIX OBJECT    	
 //    	System.out.println("STRING MATRIX");
 //    	System.out.println();
 //    	
@@ -383,8 +379,7 @@ public class Main {
 //    	System.out.println();
     	
     	
-//    	//	BOOLEAN MATRIX OBJECT
-//    	
+//    	//	BOOLEAN MATRIX OBJECT    	
 //    	System.out.println("BOOLEAN MATRIX");
 //    	System.out.println();
 //    	
@@ -437,8 +432,7 @@ public class Main {
 //    	System.out.println();
 //    	
 //    	
-//    	// ARRAY OF OBJECTS
-//    	
+//    	// ARRAY OF OBJECTS    	
 //    	//Create array of objects
 //    	System.out.println("Array creation");
 //    	ObjectArray booleanObjects1 = new ObjectArray(new ObjectArray[] {booleanMatrix1, new BooleanMatrix(matrix2), new BooleanMatrix(matrix3)});
@@ -482,10 +476,8 @@ public class Main {
 //    	booleanObjects4.deleteObject(0);
     	
     	
-//    	ARRAYS
-    	
+//    	ARRAYS    	
 //    	//DOUBLE ARRAY OBJECT    	
-    	
 //    	System.out.println("DOUBLE ARRAY");
 //    	System.out.println();
 //    	
@@ -613,8 +605,7 @@ public class Main {
 //    	System.out.println();
     	
     	
-////	INTEGER ARRAY OBJECT
-    	
+////	INTEGER ARRAY OBJECT    	
 //    	System.out.println("INTEGER ARRAY");
 //    	System.out.println();
 //    	
@@ -743,7 +734,6 @@ public class Main {
 
     	
 ////	STRING ARRAY OBJECT    	
-    	
 //    	System.out.println("STRING ARRAY");
 //    	System.out.println();
 //    	

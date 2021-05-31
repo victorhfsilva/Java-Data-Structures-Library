@@ -1,6 +1,6 @@
 package array;
 
-public class BooleanMatrix {
+public class BooleanMatrix extends ObjectArray {
 	
 private boolean[][] matrix;
 	

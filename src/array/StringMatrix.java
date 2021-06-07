@@ -1,5 +1,17 @@
 package array;
 
+/**
+ * @title String Matrix Library
+ * This library has methods to access, set, search, insert and remove lines or rows of a string matrix.
+ * 
+ * @param matrix
+ * 
+ * @author Victor Silva
+ * @see BooleanMatrix
+ * @see IntegerMatrix
+ * @see DoubleMatrix
+ */
+
 public class StringMatrix extends ObjectArray {
 	
 	private String[][] matrix;

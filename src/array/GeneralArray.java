@@ -1,25 +1,39 @@
 package array;
 
-public class GeneralArray <type> extends ObjectArray {
+/**
+ * @title Boolean Array Library
+ * This library has methods to access, set and search the elements of a generic array.
+ * 
+ * @param array
+ * @param T: type of the array
+ * 
+ * @author Victor Silva
+ * @see GeneralArray
+ * @see StringArray
+ * @see IntegerArray
+ * @see DoubleArray
+ */
+
+public class GeneralArray <T> extends ObjectArray {
 	
-	private type[] array;
+	private T[] array;
 
     //Constructors
-    public GeneralArray(type[] array){this.array = array;}
+    public GeneralArray(T[] array){this.array = array;}
 
     //Getters
-    public type[] getArray(){
+    public T[] getArray(){
         return array;
     }
 
     //Setters
-    public void setArray(type[] array){
+    public void setArray(T[] array){
         this.array=array;
     }
 
     //Setting an element of the Matrix
     //Big-O: O(1)
-    public type[] setElementAt(type element, int row) {
+    public T[] setElementAt(T element, int row) {
     	try {
     		array[row]=element;
     		return array;
@@ -32,7 +46,7 @@ public class GeneralArray <type> extends ObjectArray {
     
     //Accessing an element
     //Big-O: O(1)
-    public type getElementAt(int index){
+    public T getElementAt(int index){
         try {
             System.out.println(array[index]);
             return array[index];
@@ -42,9 +56,10 @@ public class GeneralArray <type> extends ObjectArray {
             return null;
         }
     }
+    
 
     //Searching for an element
-    public int[] indexOfElement(type element){
+    public int[] indexOfElement(T element){
     	int[] row = new int[] {};
     	//Linear Search
         //Big-O O(n)

@@ -1,5 +1,14 @@
 package array;
 
+/**
+ * @title Double Array Math
+ * This library extends the DoubleArray Class with math related methods.
+ * 
+ * 
+ * @author Victor Silva
+ * @see IntegerArrayMath
+ */
+
 public class DoubleArrayMath extends DoubleArray{
 	//Constructors
 	public DoubleArrayMath(double[] array, boolean sorted) {

@@ -1,5 +1,18 @@
 package array;
 
+/**
+ * @title Boolean Array Library
+ * This library has methods to access, set, clone, insert, remove and search objects of a objects array.
+ * 
+ * @param array
+ * 
+ * @author victor
+ * @see GeneralArray
+ * @see StringArray
+ * @see IntegerArray
+ * @see DoubleArray
+ */
+
 public class ObjectArray implements Cloneable {
 	
 	private ObjectArray[] objects;
@@ -26,7 +39,6 @@ public class ObjectArray implements Cloneable {
     }
     
     //Setting an element of the Matrix
-    //Big-O: O(1)
     public ObjectArray[] setElementAt(ObjectArray object, int row) {
     	try {
     		objects[row]=object;
@@ -39,7 +51,6 @@ public class ObjectArray implements Cloneable {
     }
     
     //Accessing an element
-    //Big-O: O(1)
     public ObjectArray getObjectAt(int index){
         try {
             System.out.println(objects[index]);
@@ -56,7 +67,6 @@ public class ObjectArray implements Cloneable {
     public int[] indexOfObject(ObjectArray object){
     	int[] row = new int[] {};
     	//Linear Search
-        //Big-O O(n)
         for (int j = 0; j<objects.length; j++){
             if (object == objects[j]) {
                 System.out.println("The object is in the index "+j);
@@ -77,7 +87,6 @@ public class ObjectArray implements Cloneable {
     }
 
     //Inserting an object
-    //Big-O: O(n)
     public ObjectArray[] insertObject(ObjectArray object, int index){
         try { if (index> objects.length || index<0) throw new ArrayIndexOutOfBoundsException();}
         catch (ArrayIndexOutOfBoundsException exception) {
@@ -99,7 +108,6 @@ public class ObjectArray implements Cloneable {
     }
 
     //Deleting an element
-    //Big-O: O(n)
     public ObjectArray[] deleteObject(int index){
         try {if (index>= objects.length || index<0) throw new ArrayIndexOutOfBoundsException();}
         catch (ArrayIndexOutOfBoundsException exception){

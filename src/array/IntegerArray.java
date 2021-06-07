@@ -1,5 +1,20 @@
 package array;
 
+/**
+ * @title Integer Array Library
+ * This library has methods to access, set, insert, remove, search and sort 
+ * the elements of a integer array.
+ * 
+ * @param array
+ * @param sorted: boolean specifying if the array is sorted
+ * 
+ * @author Victor Silva
+ * @see GeneralArray
+ * @see StringArray
+ * @see BooleanArray
+ * @see DoubleArray
+ */
+
 public class IntegerArray extends ObjectArray{
     private int[] array;
     private boolean sorted = false;
@@ -26,7 +41,6 @@ public class IntegerArray extends ObjectArray{
     public void setSorted(boolean sorted){ this.sorted = sorted;}
 
     //Setting an element of the Matrix
-    //Big-O: O(1)
     public int[] setElementAt(int element, int row) {
     	try {
     		array[row]=element;
@@ -39,7 +53,6 @@ public class IntegerArray extends ObjectArray{
     }
     
     //Accessing an element
-    //Big-O: O(1)
     public int getElementAt(int index){
         try {
             System.out.println(array[index]);
@@ -56,7 +69,6 @@ public class IntegerArray extends ObjectArray{
     public int[] indexOfElement(int element){
         int[] row = new int[] {};
     	//Binary Search
-        //Big-O: O(log2(n)+k)
         if (sorted){
             int row_end = array.length-1;
             int row_beginning = 0;
@@ -117,7 +129,6 @@ public class IntegerArray extends ObjectArray{
         }
         else{
             //Linear Search
-            //Big-O O(n)
             for (int j = 0; j<array.length; j++){
                 if (element == array[j]) {
                     System.out.println("The element is in the index "+j);
@@ -138,12 +149,11 @@ public class IntegerArray extends ObjectArray{
         }
     }
     
-  //Searching for an element while setting if the row is sorted
+    //Searching for an element while setting if the row is sorted
     public int[] indexOfElement(int element, boolean sorted){
         this.sorted = sorted;
     	int[] row = new int[] {};
     	//Binary Search
-        //Big-O: O(log2(n)+k)
         if (sorted){
             int row_end = array.length-1;
             int row_beginning = 0;
@@ -204,7 +214,6 @@ public class IntegerArray extends ObjectArray{
         }
         else{
             //Linear Search
-            //Big-O O(n)
             for (int j = 0; j<array.length; j++){
                 if (element == array[j]) {
                     System.out.println("The element is in the index "+j);
@@ -226,7 +235,6 @@ public class IntegerArray extends ObjectArray{
     }
     
     //Inserting an element
-    //Big-O: O(n)
     public int[] insertElement(int element, int index){
         try { if (index>array.length || index<0) throw new ArrayIndexOutOfBoundsException();}
         catch (ArrayIndexOutOfBoundsException exception) {
@@ -248,7 +256,6 @@ public class IntegerArray extends ObjectArray{
     }
 
     //Deleting an element
-    //Big-O: O(n)
     public int[] deleteElement(int index){
         try { if (index>=array.length || index<0) throw new ArrayIndexOutOfBoundsException();}
         catch (ArrayIndexOutOfBoundsException exception){

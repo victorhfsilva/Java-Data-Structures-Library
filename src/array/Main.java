@@ -431,7 +431,6 @@ public class Main {
 //    	booleanMatrix1.deleteRow(0);
 //    	booleanMatrix1.printMatrix();    	
 //    	System.out.println();
-//    	
 
     	//General Type Array
     	

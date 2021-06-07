@@ -1,5 +1,14 @@
 package array;
 
+/**
+ * @title Double Matrix Math
+ * This library extends the DoubleMatrix Class with math related methods.
+ * 
+ * 
+ * @author Victor Silva
+ * @see IntegerMatrixMath
+ */
+
 public class DoubleMatrixMath extends DoubleMatrix {
 
 	public DoubleMatrixMath(double[][] matrix, boolean[] sorted) {

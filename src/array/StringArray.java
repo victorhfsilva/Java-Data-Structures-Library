@@ -1,5 +1,18 @@
 package array;
 
+/**
+ * @title String Array Library
+ * This library has methods to access, set insert, remove and search the elements of a string array.
+ * 
+ * @param array
+ * 
+ * @author Victor Silva
+ * @see GeneralArray
+ * @see BooleanArray
+ * @see IntegerArray
+ * @see DoubleArray
+ */
+
 public class StringArray extends ObjectArray {
     private String[] array;
 
@@ -16,8 +29,7 @@ public class StringArray extends ObjectArray {
         this.array=array;
     }
 
-    //Setting an element of the Matrix
-    //Big-O: O(1)
+    //Setting an element of the Array
     public String[] setElementAt(String element, int row) {
     	try {
     		array[row]=element;
@@ -30,7 +42,6 @@ public class StringArray extends ObjectArray {
     }
     
     //Accessing an element
-    //Big-O: O(1)
     public String getElementAt(int index){
         try {
             System.out.println(array[index]);
@@ -46,7 +57,6 @@ public class StringArray extends ObjectArray {
     public int[] indexOfElement(String element){
     	int[] row = new int[] {};
     	//Linear Search
-        //Big-O O(n)
         for (int j = 0; j<array.length; j++){
             if (element == array[j]) {
                 System.out.println("The element is in the index "+j);
@@ -67,7 +77,6 @@ public class StringArray extends ObjectArray {
     }
 
     //Inserting an element
-    //Big-O: O(n)
     public String[] insertElement(String element,int index){
         try { if (index>array.length || index<0) throw new ArrayIndexOutOfBoundsException();}
         catch (ArrayIndexOutOfBoundsException exception) {
@@ -88,7 +97,6 @@ public class StringArray extends ObjectArray {
     }
 
     //Deleting an element
-    //Big-O: O(n)
     public String[] deleteElement(int index){
         try {if (index>=array.length || index<0) throw new ArrayIndexOutOfBoundsException();}
         catch (ArrayIndexOutOfBoundsException exception){
@@ -107,7 +115,6 @@ public class StringArray extends ObjectArray {
     }
     
     //Print Array
-    //Big-O: O(n)
     public void printArray(){
         for (int i = 0; i<array.length;i++){
             System.out.print(array[i]+"\t");

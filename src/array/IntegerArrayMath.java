@@ -1,5 +1,14 @@
 package array;
 
+/**
+ * @title Integer Array Math
+ * This library extends the Integer Array Class with math related methods.
+ * 
+ * 
+ * @author Victor Silva
+ * @see DoubleArrayMath
+ */
+
 public class IntegerArrayMath extends IntegerArray {
 
 		//Constructors

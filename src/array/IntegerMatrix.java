@@ -1,5 +1,19 @@
 package array;
 
+/**
+ * @title Integer Matrix Library
+ * This library has methods to access, set, search, sort, insert and remove lines 
+ * or rows of a integer matrix.
+ * 
+ * @param matrix
+ * @param sorted: array of booleans specifying which lines are sorted
+ * 
+ * @author Victor Silva
+ * @see StringMatrix
+ * @see BooleanMatrix
+ * @see DoubleMatrix
+ */
+
 public class IntegerMatrix extends ObjectArray {
 	
 	private int[][] matrix;
@@ -109,7 +123,6 @@ public class IntegerMatrix extends ObjectArray {
     }
     
     //Setting an element of the Matrix
-    //Big-O: O(1)
     public int[][] setElementAt(int element, int line, int row) {
     	try {
     		matrix[line][row]=element;
@@ -122,7 +135,6 @@ public class IntegerMatrix extends ObjectArray {
     }
     
     //Setting an element of the Sorted
-    //Big-O: O(1)
     public boolean[] setSortedAt(boolean sortedLine, int line) {
     	try {
     		sorted[line]=sortedLine;
@@ -135,7 +147,6 @@ public class IntegerMatrix extends ObjectArray {
     }
    
     //Accessing an element of the Matrix Array
-    //Big-O: O(1)
     public int getElementAt(int line,int row){
         try {
             System.out.println(matrix[line][row]);
@@ -148,7 +159,6 @@ public class IntegerMatrix extends ObjectArray {
     }
     
     //Accessing an element of the Sorted Array
-    //Big-O: O(1)
     public boolean getSortedAt(int line) {
     	try {
     		System.out.println(sorted[line]);
@@ -164,7 +174,6 @@ public class IntegerMatrix extends ObjectArray {
     public int[][] indexOfElement(double element){
     	int[][] rowLine = new int[][] {};
     	//Linear Search
-        //Big-O O(n*m)
         for (int line = 0; line<matrix.length; line++) {
     		for (int row = 0; row<matrix[line].length; row++){
                 if (element == matrix[line][row]) {
@@ -199,7 +208,6 @@ public class IntegerMatrix extends ObjectArray {
 	        return row;
 		}    	
 	    //Binary Search
-	    //Big-O: O(log2(n)+k)
 	    if (sorted[line]){
 		   int row_end = matrix[line].length-1;
 	       int row_beginning = 0;
@@ -260,7 +268,6 @@ public class IntegerMatrix extends ObjectArray {
        }
 	       else{
 	           //Linear Search
-	           //Big-O O(n)
 	       		for (int j = 0; j<matrix[line].length; j++){
 		                if (element == matrix[line][j]) {
 		                    System.out.println("The element is in the row "+j);		                    
@@ -294,7 +301,6 @@ public class IntegerMatrix extends ObjectArray {
     	//set the line sorted value to the inputed value
     	this.sorted[line] = sortedLine;
     	//Binary Search
-        //Big-O: O(log2(n)+k)
         if (sorted[line]){
         	int row_end = matrix[line].length-1;
  	       	int row_beginning = 0;
@@ -355,7 +361,6 @@ public class IntegerMatrix extends ObjectArray {
         }
         else{
         	//Linear Search
-        	//Big-O O(n)
        		for (int j = 0; j<matrix[line].length; j++){
 	                if (element == matrix[line][j]) {
 	                    System.out.println("The element is in the row "+j);	                    

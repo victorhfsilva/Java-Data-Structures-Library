@@ -1,5 +1,17 @@
 package array;
 
+/**
+ * @title Boolean Matrix Library
+ * This library has methods to access, set, search, insert and remove lines or rows of a boolean matrix.
+ * 
+ * @param matrix
+ * 
+ * @author Victor Silva
+ * @see StringMatrix
+ * @see IntegerMatrix
+ * @see DoubleMatrix
+ */
+
 public class BooleanMatrix extends ObjectArray {
 	
 private boolean[][] matrix;
@@ -28,11 +40,6 @@ private boolean[][] matrix;
 	                }
 	            }
 		}		
-//		//Print the length array after sorting
-//        for (int line = 0; line<length.length; line++){
-//            System.out.print(length[line]+"\t");
-//        }
-//        System.out.println();
 	       
     	//check if each line of the array has the same number of rows
 		try {
@@ -56,7 +63,6 @@ private boolean[][] matrix;
     
     
     //Setting an element of the Matrix
-    //Big-O: O(1)
     public boolean[][] setElementAt(boolean element, int line, int row) {
     	try {
     		matrix[line][row]=element;
@@ -69,7 +75,6 @@ private boolean[][] matrix;
     }
        
     //Accessing an element of the Matrix Array
-    //Big-O: O(1)
     public boolean getElementAt(int line,int row){
         try {
             System.out.println(matrix[line][row]);
@@ -85,7 +90,6 @@ private boolean[][] matrix;
     public int[][] indexOfElement(boolean element){
     	int[][] rowLine = new int[][] {};
     	//Linear Search
-        //Big-O O(n*m)
         for (int line = 0; line<matrix.length; line++) {
     		for (int row = 0; row<matrix[line].length; row++){
                 if (element == matrix[line][row]) {
@@ -120,7 +124,6 @@ private boolean[][] matrix;
 	        return row;
 		}    	
     	//Linear Search
-    	//Big-O O(n)
    		for (int j = 0; j<matrix[line].length; j++){
                 if (element == matrix[line][j]) {
                     System.out.println("The element is in the row "+j);		                    

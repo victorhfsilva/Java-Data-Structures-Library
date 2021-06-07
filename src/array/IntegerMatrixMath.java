@@ -1,5 +1,14 @@
 package array;
 
+/**
+ * @title Integer Matrix Math
+ * This library extends the IntegerMatrix Class with math related methods.
+ * 
+ * 
+ * @author Victor Silva
+ * @see DoubleMatrixMath
+ */
+
 public class IntegerMatrixMath extends IntegerMatrix {
 	
 	public IntegerMatrixMath(int[][] matrix, boolean[] sorted) {

@@ -2,7 +2,8 @@ package array;
 public class Main {
 	
     public static void main(String[] args)  throws CloneNotSupportedException {
-        
+  	
+    	
 //    	//	DOUBLE MATRIX OBJECT   	
 //    	System.out.println("DOUBLE MATRIX");
 //    	System.out.println();
@@ -431,7 +432,19 @@ public class Main {
 //    	booleanMatrix1.printMatrix();    	
 //    	System.out.println();
 //    	
-//    	
+
+    	//General Type Array
+    	
+    	//DOUBLE ARRAY OBJECT    	
+    	System.out.println("GENERAL DOUBLE ARRAY");
+    	System.out.println();
+    	
+    	//Object initialization
+    	System.out.println("Arrays creation");
+    	GeneralArray<Double> doubleArray1 = new GeneralArray<Double>(new Double[] {1.3, 3.3, 2.5, 2.7, 4.1, 5.7, 6.8});
+    	doubleArray1.printArray();
+    	System.out.println();
+    	
 //    	// ARRAY OF OBJECTS    	
 //    	//Create array of objects
 //    	System.out.println("Array creation");

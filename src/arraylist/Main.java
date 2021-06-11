@@ -9,7 +9,7 @@ import java.util.stream.IntStream;
 import array.IntegerArrayMath;
 
 /**
- * @title Using Array List 
+ * @title Array List Examples 
  * This class implement array lists as examples. Some of its tasks are: setting, accessing, cloning,
  * clearing, searching, sorting and inserting or deleting elements. 
  * 

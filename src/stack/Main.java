@@ -1,9 +1,7 @@
 package stack;
 
-import java.util.Iterator;
 import java.util.Random;
 import java.util.Stack;
-import java.util.stream.IntStream;
 
 public class Main {
 
@@ -13,7 +11,7 @@ public class Main {
 		final int STR_LENGTH = 16;
 		
 		//Initialize Stack
-		Stack stack1 = new Stack();
+		Stack<String> stack1 = new Stack<>();
 		
 		//Inserting elements (Push)
 		stack1.push("abcdefgh");
@@ -39,17 +37,16 @@ public class Main {
 		System.out.println("Size: "+stack1.size());
 		System.out.println();
 		
-		//Peeking the element on the top of the stack
-		//cast from object to stack   
+		//Peeking the element on the top of the stack 
 		System.out.println("Peeking");
-		String str1 = (String) stack1.peek();
+		String str1 = stack1.peek();
 		System.out.println(str1);
 		System.out.println();
 		
 		//Deleting the element on the top and returning it
 		//Popping
 		System.out.println("Popping");
-		String str2 = (String) stack1.pop();
+		String str2 = stack1.pop();
 		System.out.println(str2);
 		System.out.println(stack1);
 		System.out.println();
@@ -69,9 +66,9 @@ public class Main {
 		
 		//Accessing an Element
 		System.out.println("Accesing");
-		String lastString = (String)stack1.elementAt(stack1.size()-1);
+		String lastString = stack1.elementAt(stack1.size()-1);
 		System.out.println("Last String: "+lastString);
-		String firstString = (String)stack1.elementAt(0);
+		String firstString = stack1.elementAt(0);
 		System.out.println("First String: "+firstString);
 		System.out.println();
 		

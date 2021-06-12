@@ -1,5 +1,6 @@
 package queue;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.stream.IntStream;
@@ -22,6 +23,7 @@ public class Main {
 		//Dequeuing
 		System.out.println("Dequeuing");
 		int integer1 = queue1.remove();
+		System.out.println(queue1);
 		System.out.println(integer1);
 		System.out.println();
 		
@@ -38,7 +40,43 @@ public class Main {
 		System.out.println();
 		
 		//Accessing
+		System.out.println("Accessing");
+		GenericQueue queueObject1 = new GenericQueue(queue1);
+		System.out.println(queueObject1.getQueue());
+		queueObject1.getElementAt(1);
+		System.out.println(queueObject1.getQueue());
+		System.out.println();
 		
+		//Searching
+		System.out.println("Searching");
+		Queue<Integer> queue2 = new LinkedList<>();
+		IntStream.of(1,3,4,6,5,7,3,8).forEach(i -> queue2.add(i));
+		GenericQueue queueObject2 = new GenericQueue(queue2);
+		System.out.println(queueObject2.getQueue());
+		System.out.println("Size: "+queueObject2.getQueue().size());
+		
+		ArrayList<Integer> indexes = queueObject2.searchElement(3);
+		System.out.println(indexes);
+		System.out.println(queueObject2.getQueue());
+		System.out.println();
+		
+		//Setting element at
+		System.out.println("Setting Element");
+		queueObject2.setElementAt(2, 2);
+		System.out.println(queueObject2.getQueue());
+		System.out.println();
+		
+		//Inserting element at
+		System.out.println("Inserting Element");
+		queueObject2.insertElementAt(9, 1);
+		System.out.println(queueObject2.getQueue());
+		System.out.println();
+		
+		//Deleting element at
+		System.out.println("Deleting Element");
+		queueObject2.deleteElementAt(3);
+		System.out.println(queueObject2.getQueue());
+		System.out.println();
 	}
 
 }

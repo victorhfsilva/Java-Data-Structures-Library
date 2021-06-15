@@ -77,6 +77,13 @@ public class Main {
 		queueObject2.deleteElementAt(3);
 		System.out.println(queueObject2.getQueue());
 		System.out.println();
+		
+		//Stream
+		System.out.println("Streaming");
+		IntStream.of(5,4,2,3,2).forEach(i -> queue2.add(i));
+		queue2.stream().map(i -> Math.pow(i, 3)).forEach(i -> System.out.print(i+"\t"));
+		System.out.println();
+		
 	}
 
 }

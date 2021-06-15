@@ -3,7 +3,7 @@ package queue;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
-
+   
 /**
  * @title Generic Queue Library
  * This library has methods to access, set, search, insert and delete the elements of a queue.
@@ -14,7 +14,7 @@ import java.util.Queue;
  * @author Victor Silva
  */
 
-public class GenericQueue<T> implements Cloneable {
+public class GenericQueue<T> {
 	
 	private Queue<T> queue;
 	

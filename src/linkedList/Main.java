@@ -9,7 +9,6 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		// TODO Auto-generated method stub
 		LinkedList<Integer> linkedList1 = new LinkedList<Integer>();
 		
 		//Adding elements in the beginning of the linkedList

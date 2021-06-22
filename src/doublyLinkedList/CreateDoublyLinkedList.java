@@ -1,5 +1,16 @@
 package doublyLinkedList;
 
+import java.util.ArrayList;
+
+/**
+ * @title Create Doubly Linked List Class
+ * This library has methods to access, set, search, insert and delete the Nodes from a Doubly Linked List.
+ * 
+ * @param T: type of the queue
+ * 
+ * @author Victor Silva
+ */
+
 public class CreateDoublyLinkedList<T>{
 	
 	class Node {
@@ -11,9 +22,82 @@ public class CreateDoublyLinkedList<T>{
 			this.data = data;
 		}
 	}
-	
+		
 	Node head = null;
 	Node tail = null;
+	
+	public Node getNodeAtIndex(int index) {
+		try { if (index < 0 || index >= size()) throw new ArrayIndexOutOfBoundsException();}
+		catch (ArrayIndexOutOfBoundsException OutofBounds) {
+			System.out.println("The index is out of bounds");
+			return null;
+		}
+		Node current = null;
+		if (head == null && tail == null) {
+			System.out.println("The Doubly Linked List is empty");
+			return null;
+		}
+		else if (index>=0 && index<size()) {
+			if (index <= size()-index) {
+				current = head;
+				for (int i = 0; i<index; i++) {
+					current = current.next;
+				}
+			}
+			else {
+				current = tail;
+				for (int i = size()-1; i>index; i--) {
+					current = current.prev;
+				}
+			}
+		}
+		return current;
+	}
+	
+	public void setNodeAtIndex(int index, T element) {
+		try { if (index < 0 || index >= size()) throw new ArrayIndexOutOfBoundsException();}
+		catch (ArrayIndexOutOfBoundsException OutofBounds) {
+			System.out.println("The index is out of bounds");
+			return;
+		}
+		Node current = null;
+		if (head == null && tail == null) {
+			System.out.println("The Doubly Linked List is empty");
+			return;
+		}
+		else if (index>=0 && index<size()) {
+			if (index <= size()-index) {
+				current = head;
+				for (int i = 0; i<index; i++) {
+					current = current.next;
+				}
+			}
+			else {
+				current = tail;
+				for (int i = size()-1; i>index; i--) {
+					current = current.prev;
+				}
+			}
+		}
+		current.data = element;
+	}
+	
+	public ArrayList<Integer> searchForElement(T element) {
+		Node current = null;
+		ArrayList<Integer> indexes = new ArrayList<Integer>();
+		if (head == null && tail == null) {
+			System.out.println("The Doubly Linked List is empty");
+			return null;
+		}
+		else {
+			current = head;
+			for (int i = 0; i<size(); i++) {
+				if (current.data == element) indexes.add(i);
+				current = current.next;
+			}
+			return indexes;
+		}
+	}
 	
 	public void addNewNodeToTail(T data){
 		Node newNode = new Node(data);
